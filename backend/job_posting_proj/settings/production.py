@@ -1,6 +1,6 @@
 from .base import *
 
-WEBSITE_BACKEND_URL = "http://localhost:8000"
+WEBSITE_BACKEND_URL = "https://foysal0085.pythonanywhere.com"
 
 DEBUG = False
 
