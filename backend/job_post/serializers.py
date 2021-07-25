@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from .models import Post
-
+from django.conf import settings
 
 SEARCH_PATTERN = 'src=\"/media/uploads'
-SITE_DOMAIN = "http://localhost:8000"
+SITE_DOMAIN = settings.WEBSITE_BACKEND_URL
 REPLACE_WITH = f'src=\"{SITE_DOMAIN}/media/uploads/'
 
 class FixAbsolutePathSerializer(serializers.Field):

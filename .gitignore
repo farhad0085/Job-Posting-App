@@ -3,3 +3,4 @@ __pycache__
 server.md
 node_modules
 media
+.env

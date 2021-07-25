@@ -1,11 +1,14 @@
-from pathlib import Path
 import os
+from pathlib import Path
+from dotenv import load_dotenv
 
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = 'j(d@crceh&1%z47x43^x_&=-jexrqj(@km=h9&h)4jsm@&3b@2'
-DEBUG = True
-ALLOWED_HOSTS = ["*"]
+ENV_PATH = os.path.join(BASE_DIR, '.env')
+load_dotenv(ENV_PATH)
+
+ENVIRONMENT = os.environ.get("ENVIRONMENT")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 INSTALLED_APPS = [
     'corsheaders',
@@ -24,6 +27,8 @@ INSTALLED_APPS = [
     "django_filters"
 ]
 
+WSGI_APPLICATION = 'job_posting_proj.wsgi.application'
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -40,7 +45,7 @@ ROOT_URLCONF = 'job_posting_proj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "user", "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -53,20 +58,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'job_posting_proj.wsgi.application'
+AUTH_PASSWORD_VALIDATORS = []
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-]
+AUTHENTICATION_BACKENDS = ['user.backends.AuthBackend']
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
