@@ -13,6 +13,7 @@ class PostCategory(TrackingModel):
 class Post(TrackingModel):
     title = models.CharField(max_length=300)
     body = RichTextUploadingField()
+    deadline = models.DateField(blank=True, null=True)
     category = models.ForeignKey(PostCategory, on_delete=models.SET_NULL, null=True)
 
     def __str__(self) -> str:
