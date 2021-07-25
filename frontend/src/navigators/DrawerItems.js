@@ -6,12 +6,35 @@ import {
 } from "@react-navigation/drawer";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcons from "react-native-vector-icons/FontAwesome";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import { Linking } from "react-native";
+import { Linking, BackHandler, Alert, View, StyleSheet, Text } from "react-native";
+import { Grid, Row, Col } from "react-native-paper-grid";
+import {Title } from 'react-native-paper'
+
+const backPressed = () => {
+  Alert.alert(
+    "Exit App",
+    "Do you want to exit?",
+    [
+      {
+        text: "No",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "Yes", onPress: () => BackHandler.exitApp() },
+    ],
+    { cancelable: false }
+  );
+  return true;
+};
 
 const DrawerItems = (props) => {
   return (
     <DrawerContentScrollView {...props}>
+      <View>
+        <Title style={styles.title}>BD Medical Jobs</Title>
+      </View>
       <DrawerItemList {...props} />
       <DrawerItem
         label="About Us"
@@ -36,11 +59,80 @@ const DrawerItems = (props) => {
       <DrawerItem
         label="Exit"
         icon={({ focused, color, size }) => (
-          <Ionicons color={color} size={size} name={focused ? "exit" : "exit-outline"} />
+          <Ionicons
+            color={color}
+            size={size}
+            name={focused ? "exit" : "exit-outline"}
+          />
         )}
+        onPress={backPressed}
       />
+      <View>
+        <Text style={styles.connectText}>Connect with us</Text>
+        <Grid>
+          <Row>
+            <Col>
+              <Ionicons
+                size={42}
+                style={styles.facebookIcon}
+                name="logo-facebook"
+              />
+            </Col>
+            <Col>
+              <Ionicons
+                size={42}
+                style={styles.youtubeIcon}
+                name="logo-youtube"
+              />
+            </Col>
+            <Col>
+              <MaterialCommunityIcons
+                size={42}
+                style={styles.webIcon}
+                name="web"
+              />
+            </Col>
+            <Col>
+              <MaterialCommunityIcons
+                size={42}
+                style={styles.bloggerIcon}
+                name="blogger"
+              />
+            </Col>
+          </Row>
+        </Grid>
+      </View>
     </DrawerContentScrollView>
   );
 };
 
 export default DrawerItems;
+
+const styles = StyleSheet.create({
+  facebookIcon: {
+    color: "#38529A",
+  },
+  youtubeIcon: {
+    color: "#CD0F1A",
+  },
+  webIcon: {
+    color: "#188DC9",
+  },
+  bloggerIcon: {
+    color: "#F76C41",
+  },
+  connectText: {
+    paddingBottom: 5,
+    borderBottomWidth: 0.2,
+    marginLeft: 15,
+    marginRight: 15,
+    fontSize: 15,
+    opacity: 0.6,
+    fontWeight: "bold"
+  },
+  title: {
+    marginLeft: 10,
+    marginRight: 10,
+    paddingBottom: 5,
+  }
+});
