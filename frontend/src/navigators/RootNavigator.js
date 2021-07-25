@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from "../screens/Home";
@@ -12,6 +13,7 @@ import TipsAndTricks from "../screens/TipsAndTricks";
 import NoticeAndInfo from "../screens/NoticeAndInfo";
 import Favourites from "../screens/Favourites";
 import SinglePost from "../screens/SinglePost";
+import DrawerItems from "./DrawerItems";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -95,7 +97,7 @@ const HomeScreenStack = ({ navigation }) => {
       />
     </Stack.Navigator>
   );
-}
+};
 
 const AgeScreenStack = ({ navigation }) => {
   return (
@@ -115,7 +117,7 @@ const AgeScreenStack = ({ navigation }) => {
       />
     </Stack.Navigator>
   );
-}
+};
 
 const RootNavigator = () => {
   return (
@@ -123,19 +125,30 @@ const RootNavigator = () => {
       drawerContentOptions={{
         itemStyle: { marginVertical: 5 },
       }}
+      drawerContent={(props) => <DrawerItems {...props} />}
     >
       <Drawer.Screen
         name="Home"
-        options={{ drawerLabel: "Home" }}
+        options={{
+          drawerLabel: "Home",
+          drawerIcon: ({ focused, size, color }) => (
+            <Icon size={size} color={color} name="home" />
+          ),
+        }}
         component={HomeScreenStack}
       />
       <Drawer.Screen
         name="AgeCalculator"
-        options={{ drawerLabel: "Age Calculator" }}
+        options={{
+          drawerLabel: "Age Calculator",
+          drawerIcon: ({ focused, size, color }) => (
+            <Ionicons size={size} color={color} name="calculator" />
+          ),
+        }}
         component={AgeScreenStack}
       />
     </Drawer.Navigator>
   );
-}
+};
 
 export default RootNavigator;
