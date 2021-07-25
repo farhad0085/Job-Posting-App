@@ -1,0 +1,5 @@
+.vscode
+__pycache__
+server.md
+node_modules
+media
