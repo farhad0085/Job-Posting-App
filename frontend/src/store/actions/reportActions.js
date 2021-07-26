@@ -10,7 +10,7 @@ export const submitReport = (data) => (dispatch) => {
       dispatch({ type: Types.REPORT_SUBMITTED, payload: true });
     })
     .catch((error) => {
-      console.log(error.response);
+      console.log(error.response?.data || error.response);
       dispatch({
         type: Types.REPORT_SUBMISSION_ERROR,
         payload: "Error occured",

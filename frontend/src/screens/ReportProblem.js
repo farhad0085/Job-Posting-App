@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View, Text } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
@@ -20,6 +20,14 @@ const ReportProblem = ({ navigation }) => {
   const submitHandler = () => {
     dispatch(submitReport({ name, email, description }));
   };
+
+  useEffect(() => {
+    if (report.submitted) {
+      setName("");
+      setEmail("");
+      setDescription("");
+    }
+  }, [report.submitted]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
