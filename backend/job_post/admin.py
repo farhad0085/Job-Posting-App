@@ -1,5 +1,5 @@
 from django.contrib import admin
-from job_post.models import Post, PostCategory
+from job_post.models import Post, PostCategory, Report
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -13,9 +13,21 @@ class PostAdmin(admin.ModelAdmin):
             return "N/A"
 
 
+class ReportAdmin(admin.ModelAdmin):
+    list_display = ["name", "email", "_description", "replied", "created_at", "updated_at"]
+    list_filter = ["replied"]
+
+    def _description(self, obj):
+        try:
+            return obj.description[:30]
+        except:
+            return "N/A"
+
+
 class PostCategoryAdmin(admin.ModelAdmin):
     list_display = ["name", "created_at", "updated_at"]
 
 
 admin.site.register(Post, PostAdmin)
+admin.site.register(Report, ReportAdmin)
 admin.site.register(PostCategory, PostCategoryAdmin)

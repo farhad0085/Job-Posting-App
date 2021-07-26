@@ -18,3 +18,13 @@ class Post(TrackingModel):
 
     def __str__(self) -> str:
         return self.title
+
+
+class Report(TrackingModel):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    description = models.TextField()
+    replied = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return self.name or str(self.id)

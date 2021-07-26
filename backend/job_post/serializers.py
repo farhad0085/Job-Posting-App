@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post
+from .models import Post, Report
 from django.conf import settings
 
 SEARCH_PATTERN = 'src=\"/media/uploads'
@@ -17,4 +17,9 @@ class PostSerializer(serializers.ModelSerializer):
     body = FixAbsolutePathSerializer()
     class Meta:
         model = Post
+        fields = '__all__'
+
+class ReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Report
         fields = '__all__'
