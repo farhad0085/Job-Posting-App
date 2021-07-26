@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from "react-native";
 import { Grid } from "react-native-paper-grid";
-import { Title } from "react-native-paper";
+import { Title, useTheme } from "react-native-paper";
 import HTMLView from "react-native-htmlview";
 import moment from "moment";
 
@@ -17,6 +17,9 @@ const window = Dimensions.get("window");
 
 const SinglePost = ({ navigation, route }) => {
   const post = route.params.post;
+  const theme = useTheme()
+
+  const styles = getStyles(theme)
 
   function renderNode(node, index, siblings, parent, defaultRenderer) {
     if (node.name == "img") {
@@ -60,12 +63,12 @@ const SinglePost = ({ navigation, route }) => {
 
 export default SinglePost;
 
-const styles = StyleSheet.create({
+const getStyles = theme => StyleSheet.create({
   cardsContainer: {
     display: "flex",
   },
   a: {
-    color: "green",
+    color: theme.colors.primary,
   },
   postMeta: {
     borderBottomWidth: 0.5,

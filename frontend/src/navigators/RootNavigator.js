@@ -16,6 +16,8 @@ import DrawerItems from "./DrawerItems";
 import { displayName as appName } from "../../app.json";
 import ReportProblem from "../screens/ReportProblem";
 import AboutUs from "../screens/AboutUs";
+import { useTheme } from "react-native-paper";
+
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -34,17 +36,20 @@ const NavigationDrawerStructure = (props) => {
   );
 };
 
-const screenOptions = {
-  headerStyle: {
-    backgroundColor: "green",
-  },
-  headerTintColor: "#fff",
-  headerTitleStyle: {
-    fontWeight: "bold",
-  },
-};
 
 const HomeScreenStack = ({ navigation }) => {
+  const theme = useTheme()
+
+  const screenOptions = {
+    headerStyle: {
+      backgroundColor: theme.colors.primary,
+    },
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
+  };
+
   return (
     <Stack.Navigator screenOptions={screenOptions} initialRouteName="Home">
       <Stack.Screen

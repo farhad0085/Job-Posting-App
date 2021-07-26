@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View, Text } from "react-native";
-import { TextInput, Button } from "react-native-paper";
+import { TextInput, Button, useTheme } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
 import { submitReport } from "../store/actions/reportActions";
 import AwesomeAlert from "react-native-awesome-alerts";
@@ -12,6 +12,7 @@ import {
 const ReportProblem = ({ navigation }) => {
   const dispatch = useDispatch();
   const report = useSelector((state) => state.report);
+  const theme = useTheme()
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -33,20 +34,26 @@ const ReportProblem = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
         <View style={styles.container}>
+          <Text>
+            If you find any issue while using the app, please let us know. Also if you have any suggestions, please feel free to share with us.
+          </Text>
           <TextInput
             mode="outlined"
             label="Name"
             placeholder="Enter your name"
             value={name}
+            maxLength={100}
             onChangeText={(text) => setName(text)}
-            right={<TextInput.Affix text="/100" />}
+            right={<TextInput.Affix text={`${name.length}/100`} />}
           />
           <TextInput
             mode="outlined"
             placeholder="Enter your email"
             label="Email"
+            maxLength={100}
             value={email}
             onChangeText={(text) => setEmail(text)}
+            right={<TextInput.Affix text={`${email.length}/100`} />}
           />
           <TextInput
             mode="outlined"
@@ -55,8 +62,10 @@ const ReportProblem = ({ navigation }) => {
             placeholder="Enter your report details here..."
             multiline
             style={styles.textArea}
+            maxLength={5000}
             value={description}
             onChangeText={(text) => setDescription(text)}
+            right={<TextInput.Affix text={`${description.length}/5000`} />}
           />
           <Button
             loading={report.loading}
@@ -80,7 +89,7 @@ const ReportProblem = ({ navigation }) => {
             showCancelButton={false}
             showConfirmButton={true}
             confirmText="OKAY"
-            confirmButtonColor="green"
+            confirmButtonColor={theme.colors.primary}
             onConfirmPressed={() =>
               dispatch({
                 type: REPORT_SUBMITTED,

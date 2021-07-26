@@ -3,9 +3,12 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { useTheme } from "react-native-paper";
 
 const Post = ({ post, isFavourite, handleOnFavourite }) => {
   const navigation = useNavigation();
+  const theme = useTheme()
+  const styles = getStyles(theme)
 
   return (
     <TouchableOpacity
@@ -35,9 +38,9 @@ const Post = ({ post, isFavourite, handleOnFavourite }) => {
             style={styles.favIcon}
           >
             {isFavourite ? (
-              <FontAwesomeIcon size={24} color={"green"} name="heart" />
+              <FontAwesomeIcon size={24} color={theme.colors.primary} name="heart" />
             ) : (
-              <FontAwesomeIcon size={24} color={"green"} name="heart-o" />
+              <FontAwesomeIcon size={24} color={theme.colors.primary} name="heart-o" />
             )}
           </TouchableOpacity>
         </View>
@@ -48,7 +51,7 @@ const Post = ({ post, isFavourite, handleOnFavourite }) => {
 
 export default Post;
 
-const styles = StyleSheet.create({
+const getStyles = theme => StyleSheet.create({
   container: {
     width: "100%",
     borderRadius: 6,
@@ -81,7 +84,7 @@ const styles = StyleSheet.create({
   postId: {
     fontSize: 22,
     fontWeight: "bold",
-    color: "green",
+    color: theme.colors.primary,
     textAlign: "center",
   },
   postIdSection: {

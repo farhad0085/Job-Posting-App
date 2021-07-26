@@ -4,9 +4,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useNetInfo } from "@react-native-community/netinfo";
 import AwesomeAlert from "react-native-awesome-alerts";
 import RootNavigator from "./src/navigators/RootNavigator";
+import { useTheme } from "react-native-paper";
 
 const App = () => {
   const netInfo = useNetInfo();
+  const theme = useTheme()
+  
   const [isNetConnected, setIsNetConnected] = useState(true);
 
   useEffect(() => {
@@ -15,7 +18,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <StatusBar barStyle="dark-content" backgroundColor="white" />
+      <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
 
       {netInfo.isConnected === false && (
         <AwesomeAlert
@@ -28,7 +31,7 @@ const App = () => {
           showCancelButton={false}
           showConfirmButton={true}
           confirmText="Okay"
-          confirmButtonColor="green"
+          confirmButtonColor={theme.colors.primary}
           onConfirmPressed={() => setIsNetConnected(true)}
         />
       )}

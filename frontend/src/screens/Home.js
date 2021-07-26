@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View, ScrollView } from "react-native";
 import Card from "../components/Card";
 import { Grid, Col, Row } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
-import { Title } from "react-native-paper";
+import { Title, useTheme } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../store/actions/postActions";
 import { useFocusEffect } from "@react-navigation/native";
@@ -14,6 +14,7 @@ import PTRView from "react-native-pull-to-refresh";
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
+  const theme = useTheme()
   const post = useSelector((state) => state.post);
 
   useFocusEffect(
@@ -38,7 +39,7 @@ const Home = ({ navigation }) => {
                   icon={() => (
                     <MaterialIcons
                       size={72}
-                      color="green"
+                      color={theme.colors.primary}
                       name="medical-services"
                     />
                   )}
@@ -51,7 +52,7 @@ const Home = ({ navigation }) => {
                   icon={() => (
                     <MaterialCommunityIcons
                       size={72}
-                      color="green"
+                      color={theme.colors.primary}
                       name="briefcase-account"
                     />
                   )}
@@ -63,7 +64,7 @@ const Home = ({ navigation }) => {
                 <Card
                   onPress={() => navigation.navigate("TipsAndTricks")}
                   icon={() => (
-                    <MaterialIcons size={72} color="green" name="lightbulb" />
+                    <MaterialIcons size={72} color={theme.colors.primary} name="lightbulb" />
                   )}
                   title="Tips & Tricks"
                 />
@@ -74,7 +75,7 @@ const Home = ({ navigation }) => {
                 <Card
                   onPress={() => navigation.navigate("GeneralPost")}
                   icon={() => (
-                    <MaterialIcons size={72} color="green" name="cases" />
+                    <MaterialIcons size={72} color={theme.colors.primary} name="cases" />
                   )}
                   title="General"
                 />
@@ -85,7 +86,7 @@ const Home = ({ navigation }) => {
                   icon={() => (
                     <FontAwesomeIcon
                       size={72}
-                      color="green"
+                      color={theme.colors.primary}
                       name="info-circle"
                     />
                   )}
@@ -96,7 +97,7 @@ const Home = ({ navigation }) => {
                 <Card
                   onPress={() => navigation.navigate("Favourites")}
                   icon={() => (
-                    <FontAwesomeIcon size={72} color="green" name="heart" />
+                    <FontAwesomeIcon size={72} color={theme.colors.primary} name="heart" />
                   )}
                   title="Favourites"
                 />
