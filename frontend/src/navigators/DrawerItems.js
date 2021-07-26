@@ -8,9 +8,10 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcons from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import { Linking, BackHandler, Alert, View, StyleSheet, Text } from "react-native";
+import { Linking, BackHandler, Alert, View, StyleSheet, Text, ToastAndroid } from "react-native";
 import { Grid, Row, Col } from "react-native-paper-grid";
 import {Title } from 'react-native-paper'
+import {displayName as appName} from '../../app.json';
 
 const backPressed = () => {
   Alert.alert(
@@ -33,7 +34,7 @@ const DrawerItems = (props) => {
   return (
     <DrawerContentScrollView {...props}>
       <View>
-        <Title style={styles.title}>BD Medical Jobs</Title>
+        <Title style={styles.title}>{appName}</Title>
       </View>
       <DrawerItemList {...props} />
       <DrawerItem
@@ -44,14 +45,14 @@ const DrawerItems = (props) => {
       />
       <DrawerItem
         label="Rate us on Play Store"
-        onPress={() => Linking.openURL("https://mywebsite.com/help")}
+        onPress={() => ToastAndroid.show("Coming soon...", ToastAndroid.SHORT)}
         icon={({ focused, color, size }) => (
           <Ionicons color={color} size={size} name="logo-google-playstore" />
         )}
       />
       <DrawerItem
         label="Report a problem"
-        onPress={() => Linking.openURL("https://mywebsite.com/help")}
+        onPress={() => ToastAndroid.show("Coming soon...", ToastAndroid.SHORT)}
         icon={({ focused, color, size }) => (
           <MaterialIcons color={color} size={size} name="report" />
         )}

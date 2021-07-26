@@ -4,68 +4,100 @@ import Card from "../components/Card";
 import { Grid, Col, Row } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
 import { Title } from "react-native-paper";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../store/actions/postActions";
 import { useFocusEffect } from "@react-navigation/native";
-
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import PTRView from "react-native-pull-to-refresh";
 
 const Home = ({ navigation }) => {
-  const dispatch = useDispatch()
-  const post = useSelector(state => state.post)
+  const dispatch = useDispatch();
+  const post = useSelector((state) => state.post);
 
   useFocusEffect(
     React.useCallback(() => {
-      dispatch(loadPosts())
+      dispatch(loadPosts());
     }, [])
-  )
+  );
+
+  const _refresh = () => {
+    dispatch(loadPosts());
+  };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <PTRView onRefresh={_refresh} showsVerticalScrollIndicator={false}>
+      <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.cardsContainer}>
           <Grid>
             <Row>
               <Col>
                 <Card
                   onPress={() => navigation.navigate("MedicalJobs")}
-                  icon={require("../assets/icons/home/icon_medical.png")}
+                  icon={() => (
+                    <MaterialIcons
+                      size={72}
+                      color="green"
+                      name="medical-services"
+                    />
+                  )}
                   title="Medical Jobs"
                 />
               </Col>
               <Col>
                 <Card
                   onPress={() => navigation.navigate("OtherJobs")}
-                  icon={require("../assets/icons/home/icon_others.png")}
+                  icon={() => (
+                    <MaterialCommunityIcons
+                      size={72}
+                      color="green"
+                      name="briefcase-account"
+                    />
+                  )}
                   title="Other Jobs"
                 />
               </Col>
+
               <Col>
                 <Card
-                  onPress={() => navigation.navigate("GeneralPost")}
-                  icon={require("../assets/icons/home/icon_general.png")}
-                  title="General"
+                  onPress={() => navigation.navigate("TipsAndTricks")}
+                  icon={() => (
+                    <MaterialIcons size={72} color="green" name="lightbulb" />
+                  )}
+                  title="Tips & Tricks"
                 />
               </Col>
             </Row>
             <Row>
               <Col>
                 <Card
-                  onPress={() => navigation.navigate("TipsAndTricks")}
-                  icon={require("../assets/icons/home/icon_tips_n_tricks.png")}
-                  title="Tips & Tricks"
+                  onPress={() => navigation.navigate("GeneralPost")}
+                  icon={() => (
+                    <MaterialIcons size={72} color="green" name="cases" />
+                  )}
+                  title="General"
                 />
               </Col>
               <Col>
                 <Card
                   onPress={() => navigation.navigate("NoticeAndInfo")}
-                  icon={require("../assets/icons/home/icon_info.png")}
+                  icon={() => (
+                    <FontAwesomeIcon
+                      size={72}
+                      color="green"
+                      name="info-circle"
+                    />
+                  )}
                   title="Notice & Info"
                 />
               </Col>
               <Col>
                 <Card
                   onPress={() => navigation.navigate("Favourites")}
-                  icon={require("../assets/icons/home/icon_heart.png")}
+                  icon={() => (
+                    <FontAwesomeIcon size={72} color="green" name="heart" />
+                  )}
                   title="Favourites"
                 />
               </Col>
@@ -73,11 +105,15 @@ const Home = ({ navigation }) => {
             <Row>
               <Title>Latest Updates</Title>
             </Row>
-            <Posts loading={post.loading} title="Latest updates" posts={post.posts.results} />
+            <Posts
+              loading={post.loading}
+              title="Latest updates"
+              posts={post.posts.results}
+            />
           </Grid>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </PTRView>
   );
 };
 

@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'frontend' do
+target 'BDBox' do
   config = use_native_modules!
 
   use_react_native!(
@@ -12,11 +12,17 @@ target 'frontend' do
     :hermes_enabled => false
   )
 
-  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
-
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  target 'frontendTests' do
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+
+  pod 'RNCMaskedView', :path => '../node_modules/@react-native-community/masked-view'
+
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  target 'BDBoxTests' do
     inherit! :complete
     # Pods for testing
   end

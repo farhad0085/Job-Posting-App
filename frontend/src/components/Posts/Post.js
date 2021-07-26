@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
+
 
 const Post = ({ post, isFavourite, handleOnFavourite }) => {
   const navigation = useNavigation();
@@ -9,6 +11,7 @@ const Post = ({ post, isFavourite, handleOnFavourite }) => {
   return (
     <TouchableOpacity
       style={styles.container}
+      activeOpacity={0.5}
       onPress={() =>
         navigation.navigate("SinglePost", { title: post.title, post: post })
       }
@@ -19,7 +22,7 @@ const Post = ({ post, isFavourite, handleOnFavourite }) => {
       <View style={styles.postDetailsSection}>
         <View style={styles.postContent}>
           <Text>{post.title}</Text>
-          {!post.deadline && <Text style={styles.deadlineText}>Deadline: {moment(post.deadline).format("DD MMM, YYYY")}</Text>}
+          {post.deadline && <Text style={styles.deadlineText}>Deadline: {moment(post.deadline).format("DD MMM, YYYY")}</Text>}
         </View>
         <View style={styles.postMeta}>
           <Text>Last updated: {moment(post.updated_at).fromNow()}</Text>
@@ -29,11 +32,9 @@ const Post = ({ post, isFavourite, handleOnFavourite }) => {
             style={styles.favIcon}
           >
             {isFavourite ? (
-              <Image source={require("../../assets/icons/icon_heart.png")} />
-            ) : (
-              <Image
-                source={require("../../assets/icons/icon_heart_open.png")}
-              />
+              <FontAwesomeIcon size={24} color={"green"} name="heart" />
+              ) : (
+              <FontAwesomeIcon size={24} color={"green"} name="heart-o" />
             )}
           </TouchableOpacity>
         </View>
@@ -50,9 +51,11 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 5,
     borderStyle: "solid",
-    borderWidth: 0.5,
+    borderWidth: 0,
     display: "flex",
     flexDirection: "row",
+    backgroundColor: "#fff",
+    elevation: 6
   },
   postContent: {
     paddingBottom: 5,
@@ -80,7 +83,6 @@ const styles = StyleSheet.create({
   },
   postIdSection: {
     flex: 0.15,
-    backgroundColor: "#fff",
     marginRight: 4,
     alignSelf: "center",
     borderRadius: 5,

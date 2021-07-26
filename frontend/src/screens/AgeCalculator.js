@@ -1,6 +1,11 @@
-import React, {useEffect} from "react";
-import { SafeAreaView, ScrollView, View, StyleSheet, Text } from "react-native";
-import { Grid } from "react-native-paper-grid";
+import React from "react";
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+  Text
+} from "react-native";
 
 
 const AgeCalculator = ({ navigation }) => {
@@ -8,8 +13,8 @@ const AgeCalculator = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
-        <View style={styles.cardsContainer}>
-          <Text>Age calculator</Text>
+        <View style={styles.comingSoon}>
+          <Text>Coming Soon...</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -19,7 +24,10 @@ const AgeCalculator = ({ navigation }) => {
 export default AgeCalculator;
 
 const styles = StyleSheet.create({
-  cardsContainer: {
-    display: "flex",
+  comingSoon: {
+    marginLeft: "50%",
+    transform: [
+      { translateX: -50 },
+    ],
   },
 });

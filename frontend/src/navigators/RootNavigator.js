@@ -14,6 +14,7 @@ import NoticeAndInfo from "../screens/NoticeAndInfo";
 import Favourites from "../screens/Favourites";
 import SinglePost from "../screens/SinglePost";
 import DrawerItems from "./DrawerItems";
+import {displayName as appName} from '../../app.json';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -49,7 +50,7 @@ const HomeScreenStack = ({ navigation }) => {
         name="Home"
         component={Home}
         options={{
-          title: "BD Medical Jobs",
+          title: appName,
           headerLeft: () => (
             <NavigationDrawerStructure navigationProps={navigation} />
           ),
