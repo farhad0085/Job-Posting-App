@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SafeAreaView, ScrollView, View, StyleSheet } from "react-native";
+import { SafeAreaView, View, StyleSheet } from "react-native";
 import { Grid } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
 import { useSelector, useDispatch } from "react-redux";

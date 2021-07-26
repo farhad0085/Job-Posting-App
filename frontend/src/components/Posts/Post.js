@@ -2,8 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
-
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const Post = ({ post, isFavourite, handleOnFavourite }) => {
   const navigation = useNavigation();
@@ -22,7 +21,11 @@ const Post = ({ post, isFavourite, handleOnFavourite }) => {
       <View style={styles.postDetailsSection}>
         <View style={styles.postContent}>
           <Text>{post.title}</Text>
-          {post.deadline && <Text style={styles.deadlineText}>Deadline: {moment(post.deadline).format("DD MMM, YYYY")}</Text>}
+          {post.deadline && (
+            <Text style={styles.deadlineText}>
+              Deadline: {moment(post.deadline).format("DD MMM, YYYY")}
+            </Text>
+          )}
         </View>
         <View style={styles.postMeta}>
           <Text>Last updated: {moment(post.updated_at).fromNow()}</Text>
@@ -33,7 +36,7 @@ const Post = ({ post, isFavourite, handleOnFavourite }) => {
           >
             {isFavourite ? (
               <FontAwesomeIcon size={24} color={"green"} name="heart" />
-              ) : (
+            ) : (
               <FontAwesomeIcon size={24} color={"green"} name="heart-o" />
             )}
           </TouchableOpacity>
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     backgroundColor: "#fff",
-    elevation: 6
+    elevation: 6,
   },
   postContent: {
     paddingBottom: 5,
@@ -63,7 +66,7 @@ const styles = StyleSheet.create({
   },
   deadlineText: {
     color: "rgb(209, 87, 87)",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   postMeta: {
     paddingTop: 5,

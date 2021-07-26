@@ -1,7 +1,6 @@
 import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from "../screens/Home";
@@ -14,7 +13,9 @@ import NoticeAndInfo from "../screens/NoticeAndInfo";
 import Favourites from "../screens/Favourites";
 import SinglePost from "../screens/SinglePost";
 import DrawerItems from "./DrawerItems";
-import {displayName as appName} from '../../app.json';
+import { displayName as appName } from "../../app.json";
+import ReportProblem from "../screens/ReportProblem";
+import AboutUs from "../screens/AboutUs";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -96,25 +97,15 @@ const HomeScreenStack = ({ navigation }) => {
         options={{ title: "Age Calculator" }}
         component={AgeCalculator}
       />
-    </Stack.Navigator>
-  );
-};
-
-const AgeScreenStack = ({ navigation }) => {
-  return (
-    <Stack.Navigator
-      initialRouteName="AgeCalculator"
-      screenOptions={screenOptions}
-    >
       <Stack.Screen
-        name="AgeCalculator"
-        component={AgeCalculator}
-        options={{
-          title: "Age Calculator",
-          headerLeft: () => (
-            <NavigationDrawerStructure navigationProps={navigation} />
-          ),
-        }}
+        name="ReportProblem"
+        options={{ title: "Report a problem" }}
+        component={ReportProblem}
+      />
+      <Stack.Screen
+        name="AboutUs"
+        options={{ title: "About us" }}
+        component={AboutUs}
       />
     </Stack.Navigator>
   );
@@ -137,16 +128,6 @@ const RootNavigator = () => {
           ),
         }}
         component={HomeScreenStack}
-      />
-      <Drawer.Screen
-        name="AgeCalculator"
-        options={{
-          drawerLabel: "Age Calculator",
-          drawerIcon: ({ focused, size, color }) => (
-            <Ionicons size={size} color={color} name="calculator" />
-          ),
-        }}
-        component={AgeScreenStack}
       />
     </Drawer.Navigator>
   );

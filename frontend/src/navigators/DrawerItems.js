@@ -8,10 +8,25 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcons from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import { Linking, BackHandler, Alert, View, StyleSheet, Text, ToastAndroid } from "react-native";
+import {
+  Linking,
+  BackHandler,
+  Alert,
+  View,
+  StyleSheet,
+  Text,
+  ToastAndroid,
+  TouchableOpacity,
+} from "react-native";
 import { Grid, Row, Col } from "react-native-paper-grid";
-import {Title } from 'react-native-paper'
-import {displayName as appName} from '../../app.json';
+import { Title } from "react-native-paper";
+import { displayName as appName } from "../../app.json";
+import {
+  FACEBOOK_PAGE_LINK,
+  FACEBOOK_PAGE_LINK_APP,
+  WEBSITE_LINK,
+  YOUTUBE_LINK_APP,
+} from "../utils/config";
 
 const backPressed = () => {
   Alert.alert(
@@ -30,6 +45,30 @@ const backPressed = () => {
   return true;
 };
 
+const openFacebookLink = () => {
+  Linking.canOpenURL(FACEBOOK_PAGE_LINK_APP).then((supported) => {
+    if (supported) {
+      return Linking.openURL(FACEBOOK_PAGE_LINK_APP);
+    } else {
+      return Linking.openURL(FACEBOOK_PAGE_LINK);
+    }
+  });
+};
+
+const openYoutubeLink = () => {
+  Linking.canOpenURL(YOUTUBE_LINK_APP).then((supported) => {
+    if (supported) {
+      return Linking.openURL(YOUTUBE_LINK_APP);
+    } else {
+      return Linking.openURL(YOUTUBE_LINK);
+    }
+  });
+};
+
+const openWebsiteLink = () => {
+  Linking.openURL(WEBSITE_LINK);
+};
+
 const DrawerItems = (props) => {
   return (
     <DrawerContentScrollView {...props}>
@@ -38,7 +77,15 @@ const DrawerItems = (props) => {
       </View>
       <DrawerItemList {...props} />
       <DrawerItem
-        label="About Us"
+        label="Age calculator"
+        onPress={() => props.navigation.navigate("AgeCalculator")}
+        icon={({ focused, color, size }) => (
+          <Ionicons color={color} size={size} name="calculator" />
+        )}
+      />
+      <DrawerItem
+        label="About us"
+        onPress={() => props.navigation.navigate("AboutUs")}
         icon={({ focused, color, size }) => (
           <FontAwesomeIcons color={color} size={size} name="users" />
         )}
@@ -52,7 +99,7 @@ const DrawerItems = (props) => {
       />
       <DrawerItem
         label="Report a problem"
-        onPress={() => ToastAndroid.show("Coming soon...", ToastAndroid.SHORT)}
+        onPress={() => props.navigation.navigate("ReportProblem")}
         icon={({ focused, color, size }) => (
           <MaterialIcons color={color} size={size} name="report" />
         )}
@@ -73,33 +120,34 @@ const DrawerItems = (props) => {
         <Grid>
           <Row>
             <Col>
-              <Ionicons
-                size={42}
-                style={styles.facebookIcon}
-                name="logo-facebook"
-              />
+              <TouchableOpacity activeOpacity={0.5} onPress={openFacebookLink}>
+                <Ionicons
+                  size={42}
+                  style={styles.facebookIcon}
+                  name="logo-facebook"
+                />
+              </TouchableOpacity>
             </Col>
             <Col>
-              <Ionicons
-                size={42}
-                style={styles.youtubeIcon}
-                name="logo-youtube"
-              />
+              <TouchableOpacity activeOpacity={0.5} onPress={openYoutubeLink}>
+                <Ionicons
+                  size={42}
+                  style={styles.youtubeIcon}
+                  name="logo-youtube"
+                />
+              </TouchableOpacity>
             </Col>
+
             <Col>
-              <MaterialCommunityIcons
-                size={42}
-                style={styles.webIcon}
-                name="web"
-              />
+              <TouchableOpacity activeOpacity={0.5} onPress={openWebsiteLink}>
+                <MaterialCommunityIcons
+                  size={42}
+                  style={styles.webIcon}
+                  name="web"
+                />
+              </TouchableOpacity>
             </Col>
-            <Col>
-              <MaterialCommunityIcons
-                size={42}
-                style={styles.bloggerIcon}
-                name="blogger"
-              />
-            </Col>
+            <Col size={2}></Col>
           </Row>
         </Grid>
       </View>
@@ -129,11 +177,11 @@ const styles = StyleSheet.create({
     marginRight: 15,
     fontSize: 15,
     opacity: 0.6,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   title: {
     marginLeft: 10,
     marginRight: 10,
     paddingBottom: 5,
-  }
+  },
 });
