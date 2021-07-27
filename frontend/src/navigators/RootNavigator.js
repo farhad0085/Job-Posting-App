@@ -10,7 +10,6 @@ import OtherJobs from "../screens/OtherJobs";
 import GeneralPost from "../screens/GeneralPost";
 import TipsAndTricks from "../screens/TipsAndTricks";
 import NoticeAndInfo from "../screens/NoticeAndInfo";
-import Favourites from "../screens/Favourites";
 import SinglePost from "../screens/SinglePost";
 import DrawerItems from "./DrawerItems";
 import { displayName as appName } from "../../app.json";
@@ -86,11 +85,6 @@ const HomeScreenStack = ({ navigation }) => {
         name="NoticeAndInfo"
         component={NoticeAndInfo}
         options={{ title: "Notice & Info" }}
-      />
-      <Stack.Screen
-        name="Favourites"
-        component={Favourites}
-        options={{ title: "Favourites" }}
       />
       <Stack.Screen
         name="SinglePost"

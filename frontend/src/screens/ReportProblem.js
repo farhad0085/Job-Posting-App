@@ -12,7 +12,7 @@ import {
 const ReportProblem = ({ navigation }) => {
   const dispatch = useDispatch();
   const report = useSelector((state) => state.report);
-  const theme = useTheme()
+  const theme = useTheme();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -35,7 +35,8 @@ const ReportProblem = ({ navigation }) => {
       <ScrollView>
         <View style={styles.container}>
           <Text>
-            If you find any issue while using the app, please let us know. Also if you have any suggestions, please feel free to share with us.
+            If you find any issue while using the app, please let us know. Also
+            if you have any suggestions, please feel free to share with us.
           </Text>
           <TextInput
             mode="outlined"

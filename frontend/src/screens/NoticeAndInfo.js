@@ -4,7 +4,6 @@ import { Grid } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../store/actions/postActions";
-import PTRView from "react-native-pull-to-refresh";
 
 const NoticeAndInfo = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -19,15 +18,15 @@ const NoticeAndInfo = ({ navigation }) => {
   };
 
   return (
-    <PTRView onRefresh={_refresh} showsVerticalScrollIndicator={false}>
-      <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.cardsContainer}>
           <Grid>
             <Posts loading={post.loading} posts={post.posts.results} />
           </Grid>
         </View>
-      </SafeAreaView>
-    </PTRView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

@@ -77,13 +77,6 @@ const DrawerItems = (props) => {
       </View>
       <DrawerItemList {...props} />
       <DrawerItem
-        label="Age calculator"
-        onPress={() => props.navigation.navigate("AgeCalculator")}
-        icon={({ focused, color, size }) => (
-          <Ionicons color={color} size={size} name="calculator" />
-        )}
-      />
-      <DrawerItem
         label="About us"
         onPress={() => props.navigation.navigate("AboutUs")}
         icon={({ focused, color, size }) => (

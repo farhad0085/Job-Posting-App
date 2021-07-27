@@ -10,11 +10,11 @@ import { useFocusEffect } from "@react-navigation/native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import PTRView from "react-native-pull-to-refresh";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
-  const theme = useTheme()
+  const theme = useTheme();
   const post = useSelector((state) => state.post);
 
   useFocusEffect(
@@ -28,8 +28,8 @@ const Home = ({ navigation }) => {
   };
 
   return (
-    <PTRView onRefresh={_refresh} showsVerticalScrollIndicator={false}>
-      <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.cardsContainer}>
           <Grid>
             <Row>
@@ -64,7 +64,11 @@ const Home = ({ navigation }) => {
                 <Card
                   onPress={() => navigation.navigate("TipsAndTricks")}
                   icon={() => (
-                    <MaterialIcons size={72} color={theme.colors.primary} name="lightbulb" />
+                    <MaterialIcons
+                      size={72}
+                      color={theme.colors.primary}
+                      name="lightbulb"
+                    />
                   )}
                   title="Tips & Tricks"
                 />
@@ -75,7 +79,11 @@ const Home = ({ navigation }) => {
                 <Card
                   onPress={() => navigation.navigate("GeneralPost")}
                   icon={() => (
-                    <MaterialIcons size={72} color={theme.colors.primary} name="cases" />
+                    <MaterialIcons
+                      size={72}
+                      color={theme.colors.primary}
+                      name="cases"
+                    />
                   )}
                   title="General"
                 />
@@ -95,16 +103,20 @@ const Home = ({ navigation }) => {
               </Col>
               <Col>
                 <Card
-                  onPress={() => navigation.navigate("Favourites")}
+                  onPress={() => navigation.navigate("AgeCalculator")}
                   icon={() => (
-                    <FontAwesomeIcon size={72} color={theme.colors.primary} name="heart" />
+                    <Ionicons
+                      size={72}
+                      color={theme.colors.primary}
+                      name="calculator"
+                    />
                   )}
-                  title="Favourites"
+                  title="Age Calculator"
                 />
               </Col>
             </Row>
             <Row>
-              <Title>Latest Updates</Title>
+              <Title>Latest updates</Title>
             </Row>
             <Posts
               loading={post.loading}
@@ -113,8 +125,8 @@ const Home = ({ navigation }) => {
             />
           </Grid>
         </View>
-      </SafeAreaView>
-    </PTRView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
