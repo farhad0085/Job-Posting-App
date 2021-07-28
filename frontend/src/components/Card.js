@@ -18,11 +18,12 @@ export default MyCard;
 const styles = StyleSheet.create({
   cardContainer: {
     marginBottom: 5,
-    maxHeight: 130,
-    elevation: 6
+    display: "flex",
+    height: 130,
+    elevation: 6,
   },
   cardTitle: {
-    alignSelf: "center",
+    textAlign: "center",
     opacity: 0.7,
     fontSize: 14,
     fontWeight: "bold",

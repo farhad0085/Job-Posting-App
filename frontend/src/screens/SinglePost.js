@@ -5,36 +5,18 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
-  Dimensions,
+  useWindowDimensions,
 } from "react-native";
 import { Grid } from "react-native-paper-grid";
 import { Title, useTheme } from "react-native-paper";
-import HTMLView from "react-native-htmlview";
 import moment from "moment";
-
-const window = Dimensions.get("window");
+import RenderHtml from "react-native-render-html";
 
 const SinglePost = ({ navigation, route }) => {
   const post = route.params.post;
-  const theme = useTheme()
-
-  const styles = getStyles(theme)
-
-  function renderNode(node, index, siblings, parent, defaultRenderer) {
-    if (node.name == "img") {
-      const { src, height } = node.attribs;
-
-      return (
-        <Image
-          key={index}
-          resizeMode="contain"
-          style={styles.image}
-          source={{ uri: src }}
-        />
-      );
-    }
-  }
+  const theme = useTheme();
+  const screenDimension = useWindowDimensions();
+  const styles = getStyles(theme);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -46,12 +28,9 @@ const SinglePost = ({ navigation, route }) => {
               <Text>Last updated: {moment(post.updated_at).fromNow()}</Text>
             </View>
             <View>
-              <HTMLView
-                value={post.body}
-                stylesheet={styles}
-                paragraphBreak={null}
-                lineBreak={null}
-                renderNode={renderNode}
+              <RenderHtml
+                contentWidth={screenDimension.width}
+                source={{ html: post.body }}
               />
             </View>
           </Grid>
@@ -63,20 +42,16 @@ const SinglePost = ({ navigation, route }) => {
 
 export default SinglePost;
 
-const getStyles = theme => StyleSheet.create({
-  cardsContainer: {
-    display: "flex",
-  },
-  a: {
-    color: theme.colors.primary,
-  },
-  postMeta: {
-    borderBottomWidth: 0.5,
-    marginBottom: 10,
-  },
-  image: {
-    flex: 1,
-    width: window.width,
-    height: 300,
-  },
-});
+const getStyles = (theme) =>
+  StyleSheet.create({
+    cardsContainer: {
+      display: "flex",
+    },
+    a: {
+      color: theme.colors.primary,
+    },
+    postMeta: {
+      borderBottomWidth: 0.5,
+      marginBottom: 10,
+    },
+  });
