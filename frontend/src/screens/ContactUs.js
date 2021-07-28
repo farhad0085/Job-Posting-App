@@ -9,7 +9,7 @@ import {
   REPORT_SUBMITTED,
 } from "../store/actions/actionTypes";
 
-const ReportProblem = ({ navigation }) => {
+const ContactUs = ({ navigation }) => {
   const dispatch = useDispatch();
   const report = useSelector((state) => state.report);
   const theme = useTheme();
@@ -124,7 +124,7 @@ const ReportProblem = ({ navigation }) => {
   );
 };
 
-export default ReportProblem;
+export default ContactUs;
 
 const styles = StyleSheet.create({
   container: {

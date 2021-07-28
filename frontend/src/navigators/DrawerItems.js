@@ -7,7 +7,6 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcons from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import {
   Linking,
   BackHandler,
@@ -91,10 +90,14 @@ const DrawerItems = (props) => {
         )}
       />
       <DrawerItem
-        label="Report a problem"
-        onPress={() => props.navigation.navigate("ReportProblem")}
+        label="Contact with us"
+        onPress={() => props.navigation.navigate("ContactUs")}
         icon={({ focused, color, size }) => (
-          <MaterialIcons color={color} size={size} name="report" />
+          <MaterialCommunityIcons
+            color={color}
+            size={size}
+            name="message-draw"
+          />
         )}
       />
       <DrawerItem

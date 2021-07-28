@@ -1,9 +1,16 @@
 import React, { useEffect } from "react";
-import { SafeAreaView, View, StyleSheet, ScrollView } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import { Grid } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../store/actions/postActions";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const MedicalJobs = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -16,6 +23,19 @@ const MedicalJobs = ({ navigation }) => {
   const _refresh = () => {
     dispatch(loadPosts({ category: 1 }));
   };
+
+  navigation.setOptions({
+    headerRight: () => (
+      <TouchableOpacity onPress={() => _refresh()}>
+        <Ionicons
+          style={{ marginRight: 10 }}
+          name="reload-circle-sharp"
+          size={32}
+          color="#fff"
+        />
+      </TouchableOpacity>
+    ),
+  });
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

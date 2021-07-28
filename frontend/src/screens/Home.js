@@ -1,5 +1,11 @@
-import React, { useEffect } from "react";
-import { SafeAreaView, StyleSheet, View, ScrollView } from "react-native";
+import React from "react";
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import Card from "../components/Card";
 import { Grid, Col, Row } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
@@ -26,6 +32,19 @@ const Home = ({ navigation }) => {
   const _refresh = () => {
     dispatch(loadPosts());
   };
+
+  navigation.setOptions({
+    headerRight: () => (
+      <TouchableOpacity onPress={() => _refresh()}>
+        <Ionicons
+          style={{ marginRight: 10 }}
+          name="reload-circle-sharp"
+          size={32}
+          color="#fff"
+        />
+      </TouchableOpacity>
+    ),
+  });
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

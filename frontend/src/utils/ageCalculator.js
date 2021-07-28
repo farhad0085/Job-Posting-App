@@ -1,64 +1,27 @@
-export const ageCalculator = (dob, now) => {
+import moment from 'moment'
 
-  if (dob > now) {
-    var temp = dob
-    var dob = now
-    var now = temp
+export const calculateDuration = (date1, date2) => {
+
+  if (date1 < date2) {
+    var temp = date1
+    var date1 = date2
+    var date2 = temp
   }
 
-  var dobYear = dob.getFullYear();
-  var dobMonth = dob.getMonth();
-  var dobDate = dob.getDate();
+  const diffDuration = moment.duration(date1.diff(date2));
+  const years = diffDuration.years()
+  const months = diffDuration.months()
+  const days = diffDuration.days()
 
-  var currentYear = now.getFullYear();
-  var currentMonth = now.getMonth();
-  var currentDate = now.getDate();
-
-  var age = {};
-  var ageString = "";
-
-  const yearAge = currentYear - dobYear;
-
-  if (currentMonth >= dobMonth)
-    var monthAge = currentMonth - dobMonth;
-  else {
-    yearAge--;
-    var monthAge = 12 + currentMonth - dobMonth;
+  let ageString = ""
+  if (years) {
+    ageString += ` ${years} Years`
   }
-
-  if (currentDate >= dobDate)
-    var dateAge = currentDate - dobDate;
-  else {
-    monthAge--;
-    var dateAge = 31 + currentDate - dobDate;
-
-    if (monthAge < 0) {
-      monthAge = 11;
-      yearAge--;
-    }
+  if (months) {
+    ageString += ` ${months} Months`
   }
-
-  age = {
-    years: yearAge,
-    months: monthAge,
-    days: dateAge,
-  };
-
-  if (age.years > 0 && age.months > 0 && age.days > 0)
-    ageString = age.years + " years, " + age.months + " months, and " + age.days + " days";
-  else if (age.years == 0 && age.months == 0 && age.days > 0)
-    ageString = "Only " + age.days + " days";
-  else if (age.years > 0 && age.months == 0 && age.days == 0)
-    ageString = age.years + " years. Happy Birthday!!";
-  else if (age.years > 0 && age.months > 0 && age.days == 0)
-    ageString = age.years + " years and " + age.months + " months";
-  else if (age.years == 0 && age.months > 0 && age.days > 0)
-    ageString = age.months + " months and " + age.days + " days";
-  else if (age.years > 0 && age.months == 0 && age.days > 0)
-    ageString = age.years + " years, and" + age.days + " days";
-  else if (age.years == 0 && age.months > 0 && age.days == 0)
-    ageString = age.months + " months";
-  else ageString = "Welcome to Earth! It's first day on Earth!";
-
-  return ageString;
+  if (days) {
+    ageString += ` ${days} Days`
+  }
+  return ageString.trim()
 }

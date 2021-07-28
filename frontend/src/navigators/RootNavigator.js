@@ -13,10 +13,9 @@ import NoticeAndInfo from "../screens/NoticeAndInfo";
 import SinglePost from "../screens/SinglePost";
 import DrawerItems from "./DrawerItems";
 import { displayName as appName } from "../../app.json";
-import ReportProblem from "../screens/ReportProblem";
+import ContactUs from "../screens/ContactUs";
 import AboutUs from "../screens/AboutUs";
 import { useTheme } from "react-native-paper";
-
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -35,9 +34,8 @@ const NavigationDrawerStructure = (props) => {
   );
 };
 
-
 const HomeScreenStack = ({ navigation }) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   const screenOptions = {
     headerStyle: {
@@ -97,9 +95,9 @@ const HomeScreenStack = ({ navigation }) => {
         component={AgeCalculator}
       />
       <Stack.Screen
-        name="ReportProblem"
-        options={{ title: "Report a problem" }}
-        component={ReportProblem}
+        name="ContactUs"
+        options={{ title: "Contact us" }}
+        component={ContactUs}
       />
       <Stack.Screen
         name="AboutUs"

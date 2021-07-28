@@ -3,7 +3,7 @@ import { SafeAreaView, ScrollView, StyleSheet, View, Text } from "react-native";
 import { Button, useTheme } from "react-native-paper";
 import DatePicker from "react-native-datepicker";
 import moment from "moment";
-import { ageCalculator } from "../utils/ageCalculator";
+import { calculateDuration } from "../utils/ageCalculator";
 
 
 const AgeCalculator = ({ navigation }) => {
@@ -15,9 +15,9 @@ const AgeCalculator = ({ navigation }) => {
   const styles = getStyles(theme)
 
   const calculateAge = () => {
-    const dob = new Date(moment(dateOfBirth, "DD-MM-YYYY"))
-    const second = new Date(moment(secondDate, "DD-MM-YYYY"))
-    const ageText = ageCalculator(dob, second)
+    const dob = moment(dateOfBirth, "DD-MM-YYYY")
+    const second = moment(secondDate, "DD-MM-YYYY")
+    const ageText = calculateDuration(dob, second)
     setAge(ageText)
   };
 
@@ -73,7 +73,7 @@ const AgeCalculator = ({ navigation }) => {
           </Button>
           {!!age && (
             <View style={{ marginTop: 5}}>
-              <Text>Your age at {moment(secondDate).format("DD MMM, YYYY")}:</Text>
+              <Text>Your age at {moment(secondDate, "DD-MM-YYYY").format("DD MMM, YYYY")}:</Text>
               <Text style={styles.ageText}>{age}</Text>
             </View>
           )}
