@@ -36,11 +36,13 @@ class PostRetrieveAPIView(RetrieveAPIView):
 
     def get_related_posts_by_tags(self, post_obj):
         tags = self.get_tags_from_title(post_obj.title)
-        posts = Post.objects.filter(Q(title__in=tags) | Q(title__in=tags))[:self.related_post_amount]
+        posts = Post.objects.filter(Q(title__in=tags) | Q(title__in=tags))\
+            .exclude(id=post_obj.id)[:self.related_post_amount]
         return posts
     
     def get_related_posts_by_category(self, post_obj):
-        posts = Post.objects.filter(category=post_obj.category).order_by('-id')[:self.related_post_amount]
+        posts = Post.objects.filter(category=post_obj.category)\
+            .exclude(id=post_obj.id).order_by('-id')[:self.related_post_amount]
         return posts
 
     def get_related_posts(self, post):
