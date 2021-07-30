@@ -7,14 +7,14 @@ import { ActivityIndicator, Button } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../../store/actions/postActions";
 
-const Posts = ({ loading, posts }) => {
+const Posts = ({ loading, posts, hidePagination }) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post);
 
   return (
     <View>
       {loading ? (
-        <ActivityIndicator size="small" />
+        <ActivityIndicator style={{ marginTop: 10 }} size="small" />
       ) : (
         <>
           {posts.map((post) => (
@@ -23,27 +23,29 @@ const Posts = ({ loading, posts }) => {
             </Row>
           ))}
 
-          <Row>
-            <Col>
-              <Button
-                mode="contained"
-                onPress={() => dispatch(loadPosts({}, post.posts.previous))}
-                disabled={!post.posts.previous}
-              >
-                Prev
-              </Button>
-            </Col>
+          {!hidePagination && (
+            <Row>
+              <Col>
+                <Button
+                  mode="contained"
+                  onPress={() => dispatch(loadPosts({}, post.posts.previous))}
+                  disabled={!post.posts.previous}
+                >
+                  Prev
+                </Button>
+              </Col>
 
-            <Col>
-              <Button
-                mode="contained"
-                onPress={() => dispatch(loadPosts({}, post.posts.next))}
-                disabled={!post.posts.next}
-              >
-                Next
-              </Button>
-            </Col>
-          </Row>
+              <Col>
+                <Button
+                  mode="contained"
+                  onPress={() => dispatch(loadPosts({}, post.posts.next))}
+                  disabled={!post.posts.next}
+                >
+                  Next
+                </Button>
+              </Col>
+            </Row>
+          )}
         </>
       )}
     </View>

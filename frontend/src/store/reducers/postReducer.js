@@ -6,6 +6,10 @@ const initialState = {
     prev: "",
     results: []
   },
+  singlePost: {
+    loading: false,
+    postData: {}
+  },
   loading: false,
   error: "",
 };
@@ -31,6 +35,37 @@ function postReducer(state = initialState, action) {
         loading: false,
         error: "",
         posts: action.payload
+      };
+    }
+    case Types.POST_DETAIL_LOADING: {
+      return {
+        ...state,
+        singlePost: {
+          ...state.singlePost,
+          loading: action.payload
+        }
+      };
+    }
+    case Types.POST_DETAIL_LOADED: {
+      return {
+        ...state,
+        singlePost: {
+          ...state.singlePost,
+          loading: false,
+          postData: action.payload,
+          error: ""
+        }
+      };
+    }
+    case Types.POST_DETAIL_LOAD_ERROR: {
+      return {
+        ...state,
+        singlePost: {
+          ...state.singlePost,
+          loading: false,
+          postData: {},
+          error: action.payload
+        }
       };
     }
     default:
