@@ -21,10 +21,11 @@ const SinglePost = ({ route }) => {
   const styles = getStyles(theme);
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post);
+  const postData = post.singlePost?.postData?.post;
 
   useEffect(() => {
     dispatch(loadPost(postObj.id));
-  }, []);
+  }, [postObj.id]);
 
   return (
     <SafeAreaView style={{ flex: 1, padding: 10 }}>
@@ -46,25 +47,29 @@ const SinglePost = ({ route }) => {
               </Text>
             ) : (
               <View style={styles.cardsContainer}>
-                <View style={styles.postMeta}>
-                  <Title>{post.singlePost?.postData?.post?.title}</Title>
-                  {post.singlePost?.postData?.post && <PostMeta post={post.singlePost?.postData?.post} />}
-                </View>
-                <View>
-                  <RenderHtml
-                    contentWidth={screenDimension.width}
-                    source={{ html: post.singlePost?.postData?.post?.body }}
-                  />
-                </View>
-                <View style={{ marginBottom: 10 }}>
-                  <Title style={styles.relatedPostTitle}>
-                    You may also like
-                  </Title>
-                  <Posts
-                    hidePagination={true}
-                    posts={post.singlePost?.postData?.related_posts || []}
-                  />
-                </View>
+                {postData && (
+                  <>
+                    <View style={styles.postMeta}>
+                      <Title>{postData?.title}</Title>
+                      <PostMeta post={postData} />
+                    </View>
+                    <View>
+                      <RenderHtml
+                        contentWidth={screenDimension.width}
+                        source={{ html: postData?.body }}
+                      />
+                    </View>
+                    <View style={{ marginBottom: 10 }}>
+                      <Title style={styles.relatedPostTitle}>
+                        You may also like
+                      </Title>
+                      <Posts
+                        hidePagination={true}
+                        posts={post.singlePost?.postData?.related_posts || []}
+                      />
+                    </View>
+                  </>
+                )}
               </View>
             )}
           </>
