@@ -1,11 +1,13 @@
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from job_post.filters import PostFilter
-from job_post.models import Post, Report
+from job_post.models import Post, PostViewMeta, Report
 from job_post.serializers import PostSerializer, ReportSerializer
 from django_filters import rest_framework as filters
-from django.db.models import Q
+from django.db.models import Q, Sum
 import re
+
+from job_post.utils import get_client_ip
 
 class PostListAPIView(ListAPIView):
     serializer_class = PostSerializer
@@ -24,6 +26,12 @@ class PostRetrieveAPIView(RetrieveAPIView):
         serializer = self.get_serializer(post)
         related_posts = self.get_related_posts(post)
         related_posts_serializer = self.get_serializer(related_posts, many=True)
+
+        # increase post views
+        post_view, _ = PostViewMeta.objects.get_or_create(post=post, ip=get_client_ip(request))
+        post_view.views = post_view.views + 1
+        post_view.save()
+
         return Response({
             "post": serializer.data,
             "related_posts": related_posts_serializer.data

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from job_post.models import Post, PostCategory, Report
+from job_post.models import Post, PostCategory, PostViewMeta, Report
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -28,6 +28,11 @@ class PostCategoryAdmin(admin.ModelAdmin):
     list_display = ["name", "created_at", "updated_at"]
 
 
+class PostViewMetaAdmin(admin.ModelAdmin):
+    list_display = ["post", "ip", "views"]
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Report, ReportAdmin)
 admin.site.register(PostCategory, PostCategoryAdmin)
+admin.site.register(PostViewMeta, PostViewMetaAdmin)

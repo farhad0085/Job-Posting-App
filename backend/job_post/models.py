@@ -28,3 +28,9 @@ class Report(TrackingModel):
 
     def __str__(self) -> str:
         return self.name or str(self.id)
+
+
+class PostViewMeta(TrackingModel):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    ip = models.GenericIPAddressField(default="")
+    views = models.IntegerField(default=0)
