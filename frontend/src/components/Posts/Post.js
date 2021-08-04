@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "react-native-paper";
+import PostMeta from "./PostMeta";
 
 const Post = ({ post }) => {
   const navigation = useNavigation();
@@ -29,9 +30,7 @@ const Post = ({ post }) => {
             </Text>
           )}
         </View>
-        <View style={styles.postMeta}>
-          <Text>Last updated: {moment(post.updated_at).fromNow()}</Text>
-        </View>
+        <PostMeta post={post} />
       </View>
     </TouchableOpacity>
   );
@@ -59,11 +58,6 @@ const getStyles = (theme) =>
     deadlineText: {
       color: "rgb(209, 87, 87)",
       fontWeight: "bold",
-    },
-    postMeta: {
-      paddingTop: 5,
-      display: "flex",
-      flexDirection: "row",
     },
     postId: {
       fontSize: 22,

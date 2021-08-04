@@ -8,13 +8,13 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { Title, useTheme, ActivityIndicator } from "react-native-paper";
-import moment from "moment";
 import RenderHtml from "react-native-render-html";
 import Posts from "../components/Posts/Posts";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPost } from "../store/actions/postActions";
+import PostMeta from "../components/Posts/PostMeta";
 
-const SinglePost = ({ navigation, route }) => {
+const SinglePost = ({ route }) => {
   const postObj = route.params.post;
   const theme = useTheme();
   const screenDimension = useWindowDimensions();
@@ -48,12 +48,7 @@ const SinglePost = ({ navigation, route }) => {
               <View style={styles.cardsContainer}>
                 <View style={styles.postMeta}>
                   <Title>{post.singlePost?.postData?.post?.title}</Title>
-                  <Text>
-                    Last updated:{" "}
-                    {moment(
-                      post.singlePost?.postData?.post?.updated_at
-                    ).fromNow()}
-                  </Text>
+                  {post.singlePost?.postData?.post && <PostMeta post={post.singlePost?.postData?.post} />}
                 </View>
                 <View>
                   <RenderHtml
