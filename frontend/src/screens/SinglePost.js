@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet,
   useWindowDimensions,
+  ToastAndroid,
 } from "react-native";
 import { Title, useTheme, ActivityIndicator } from "react-native-paper";
 import RenderHtml from "react-native-render-html";
@@ -13,6 +14,9 @@ import Posts from "../components/Posts/Posts";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPost } from "../store/actions/postActions";
 import PostMeta from "../components/Posts/PostMeta";
+import ContextMenuReact from "react-native-context-menu-view";
+import Clipboard from '@react-native-clipboard/clipboard';
+
 
 const SinglePost = ({ route }) => {
   const postObj = route.params.post;
@@ -26,6 +30,11 @@ const SinglePost = ({ route }) => {
   useEffect(() => {
     dispatch(loadPost(postObj.id));
   }, [postObj.id]);
+
+  const copyToClipboard = () => {
+    Clipboard.setString(postData?.body.replace(/<[^>]+>/g, ''));
+    ToastAndroid.show("Text copied to clipboard", ToastAndroid.SHORT)
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, padding: 10 }}>
@@ -54,10 +63,21 @@ const SinglePost = ({ route }) => {
                       <PostMeta post={postData} />
                     </View>
                     <View>
-                      <RenderHtml
-                        contentWidth={screenDimension.width}
-                        source={{ html: postData?.body }}
-                      />
+                      <ContextMenuReact
+                        actions={[
+                          {
+                            title: "Copy",
+                            disabled: false
+                          },
+                        ]}
+                        onPress={copyToClipboard}
+                      >
+                        <RenderHtml
+                          defaultViewProps={{ selectable: true }}
+                          contentWidth={screenDimension.width}
+                          source={{ html: postData?.body }}
+                        />
+                      </ContextMenuReact>
                     </View>
                     <View style={{ marginBottom: 10 }}>
                       <Title style={styles.relatedPostTitle}>
