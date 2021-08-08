@@ -25,7 +25,6 @@ target 'BDBox' do
 
   pod 'RNDateTimePicker', :path => '../node_modules/@react-native-community/datetimepicker'
 
-  pod 'RNCClipboard', :path => '../node_modules/@react-native-clipboard/clipboard'
 
   target 'BDBoxTests' do
     inherit! :complete
