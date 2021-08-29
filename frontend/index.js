@@ -5,7 +5,7 @@ import { name as appName } from "./app.json";
 import { Provider as PaperProvider } from "react-native-paper";
 import { Provider as StoreProvider } from "react-redux";
 import store from "./src/store";
-import theme from "./theme";
+import { darkTheme, defaultTheme } from "./theme";
 import SplashScreen from "react-native-splash-screen";
 
 export default function Main() {
@@ -16,7 +16,7 @@ export default function Main() {
 
   return (
     <StoreProvider store={store}>
-      <PaperProvider theme={theme}>
+      <PaperProvider theme={darkTheme}>
         <App />
       </PaperProvider>
     </StoreProvider>

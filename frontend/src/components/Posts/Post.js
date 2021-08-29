@@ -23,7 +23,7 @@ const Post = ({ post }) => {
       </View>
       <View style={styles.postDetailsSection}>
         <View style={styles.postContent}>
-          <Text>{post.title}</Text>
+          <Text style={styles.postTitle}>{post.title}</Text>
           {post.deadline && (
             <Text style={styles.deadlineText}>
               Deadline: {moment(post.deadline).format("DD MMM, YYYY")}
@@ -48,7 +48,7 @@ const getStyles = (theme) =>
       borderWidth: 0,
       display: "flex",
       flexDirection: "row",
-      backgroundColor: "#fff",
+      backgroundColor: theme.card.colors.background,
       elevation: 6,
     },
     postContent: {
@@ -64,6 +64,10 @@ const getStyles = (theme) =>
       fontWeight: "bold",
       color: theme.colors.primary,
       textAlign: "center",
+    },
+    postTitle: {
+      color: theme.card.colors.text
+
     },
     postIdSection: {
       flex: 0.15,

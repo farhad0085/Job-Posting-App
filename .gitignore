@@ -4,3 +4,4 @@ server.md
 node_modules
 media
 .env
+/colors.css

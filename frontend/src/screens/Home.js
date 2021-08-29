@@ -22,6 +22,7 @@ const Home = ({ navigation }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const post = useSelector((state) => state.post);
+  const styles = getStyles(theme);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -48,7 +49,7 @@ const Home = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView style={styles.mainView} showsVerticalScrollIndicator={false}>
         <View style={styles.cardsContainer}>
           <Grid>
             <Row>
@@ -58,7 +59,7 @@ const Home = ({ navigation }) => {
                   icon={() => (
                     <MaterialIcons
                       size={72}
-                      color={theme.colors.primary}
+                      color={theme.colors.icon}
                       name="medical-services"
                     />
                   )}
@@ -71,7 +72,7 @@ const Home = ({ navigation }) => {
                   icon={() => (
                     <MaterialCommunityIcons
                       size={72}
-                      color={theme.colors.primary}
+                      color={theme.colors.icon}
                       name="briefcase-account"
                     />
                   )}
@@ -85,7 +86,7 @@ const Home = ({ navigation }) => {
                   icon={() => (
                     <MaterialIcons
                       size={72}
-                      color={theme.colors.primary}
+                      color={theme.colors.icon}
                       name="lightbulb"
                     />
                   )}
@@ -100,7 +101,7 @@ const Home = ({ navigation }) => {
                   icon={() => (
                     <MaterialIcons
                       size={72}
-                      color={theme.colors.primary}
+                      color={theme.colors.icon}
                       name="cases"
                     />
                   )}
@@ -113,7 +114,7 @@ const Home = ({ navigation }) => {
                   icon={() => (
                     <FontAwesomeIcon
                       size={72}
-                      color={theme.colors.primary}
+                      color={theme.colors.icon}
                       name="info-circle"
                     />
                   )}
@@ -126,7 +127,7 @@ const Home = ({ navigation }) => {
                   icon={() => (
                     <Ionicons
                       size={72}
-                      color={theme.colors.primary}
+                      color={theme.colors.icon}
                       name="calculator"
                     />
                   )}
@@ -151,8 +152,14 @@ const Home = ({ navigation }) => {
 
 export default Home;
 
-const styles = StyleSheet.create({
-  cardsContainer: {
-    display: "flex",
-  },
-});
+const getStyles = (theme) =>
+  StyleSheet.create({
+    cardsContainer: {
+      display: "flex",
+      backgroundColor: theme.colors.background,
+    },
+    mainView: {
+      display: "flex",
+      backgroundColor: theme.colors.background,
+    },
+  });

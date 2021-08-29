@@ -13,7 +13,7 @@ const PostMeta = ({ post }) => {
   return (
     <View style={styles.postMeta}>
       <View style={styles.postUpdateTime}>
-        <Text>Last updated: {moment(post.updated_at).fromNow()}</Text>
+        <Text style={styles.text}>Last updated: {moment(post.updated_at).fromNow()}</Text>
       </View>
       <View style={styles.postViewIcon}>
         <TouchableOpacity
@@ -21,7 +21,7 @@ const PostMeta = ({ post }) => {
           onPress={() => setModalVisible(true)}
         >
           <FontAwesomeIcon size={16} color={theme.colors.primary} name="eye" />
-          <Text style={{ marginLeft: 4 }}>{post.post_view.total_views}</Text>
+          <Text style={{ marginLeft: 4, ...styles.text }}>{post.post_view.total_views}</Text>
         </TouchableOpacity>
         {modalVisible && (
           <Modal
@@ -47,6 +47,9 @@ const getStyles = (theme) => StyleSheet.create({
   },
   postUpdateTime: {
     alignItems: "flex-start",
+  },
+  text: {
+    color: "rgb(108, 108, 108)",
   },
   postViewIcon: {
     display: "flex",
