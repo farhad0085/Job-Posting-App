@@ -13,6 +13,7 @@ const ContactUs = ({ navigation }) => {
   const dispatch = useDispatch();
   const report = useSelector((state) => state.report);
   const theme = useTheme();
+  const styles = getStyles(theme)
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,7 +33,7 @@ const ContactUs = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView>
+      <ScrollView style={styles.mainView}>
         <View style={styles.container}>
           <Text>
             If you find any issue while using the app, please let us know. Also
@@ -126,12 +127,16 @@ const ContactUs = ({ navigation }) => {
 
 export default ContactUs;
 
-const styles = StyleSheet.create({
+const getStyles = theme => StyleSheet.create({
   container: {
     margin: 5,
     marginBottom: 0,
   },
   submitButton: {
     marginTop: 6,
+  },
+  mainView: {
+    display: "flex",
+    backgroundColor: theme.colors.background,
   },
 });

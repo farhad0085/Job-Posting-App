@@ -11,10 +11,13 @@ import Posts from "../components/Posts/Posts";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../store/actions/postActions";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useTheme } from "react-native-paper";
 
 const OtherJobs = ({ navigation }) => {
   const dispatch = useDispatch();
+  const theme = useTheme()
   const post = useSelector((state) => state.post);
+  const styles = getStyles(theme)
 
   useEffect(() => {
     dispatch(loadPosts({ category: 2 }));
@@ -39,7 +42,7 @@ const OtherJobs = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView style={styles.mainView} showsVerticalScrollIndicator={false}>
         <View style={styles.cardsContainer}>
           <Grid>
             <Posts loading={post.loading} posts={post.posts.results} />
@@ -52,8 +55,12 @@ const OtherJobs = ({ navigation }) => {
 
 export default OtherJobs;
 
-const styles = StyleSheet.create({
+const getStyles = theme => StyleSheet.create({
   cardsContainer: {
     display: "flex",
+  },
+  mainView: {
+    display: "flex",
+    backgroundColor: theme.colors.background,
   },
 });

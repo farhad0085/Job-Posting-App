@@ -11,7 +11,6 @@ const AgeCalculator = ({ navigation }) => {
   const [secondDate, setSecondDate] = useState(new Date());
   const [age, setAge] = useState("");
   const theme = useTheme()
-
   const styles = getStyles(theme)
 
   const calculateAge = () => {
@@ -23,7 +22,7 @@ const AgeCalculator = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView>
+      <ScrollView style={styles.mainView}>
         <View style={styles.container}>
           <Text style={styles.titleText}>Calculate your age</Text>
 
@@ -107,5 +106,9 @@ const getStyles = theme => StyleSheet.create({
   ageText: {
     fontSize: 20,
     color: theme.colors.primary
-  }
+  },
+  mainView: {
+    display: "flex",
+    backgroundColor: theme.colors.background,
+  },
 });
