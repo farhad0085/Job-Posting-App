@@ -1,11 +1,14 @@
 import React from "react";
-import { SafeAreaView, ScrollView, StyleSheet, View, Text } from "react-native";
-import { Title } from "react-native-paper";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { Title, useTheme, Text } from "react-native-paper";
 
 const AboutUs = ({ navigation }) => {
+  const theme = useTheme();
+  const styles = getStyles(theme)
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView style={styles.mainView} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Text>
             ছড়িয়ে ছিটিয়ে থাকা বিভিন্ন গুরুত্বপূর্ণ তথ্য সংগ্রহ করে তা প্রচার করে
@@ -36,7 +39,7 @@ const AboutUs = ({ navigation }) => {
             SITE AND OUR MOBILE APPLICATION AND YOUR RELIANCE ON ANY INFORMATION
             ON THE SITE AND OUR MOBILE APPLICATION IS SOLELY AT YOUR OWN RISK.
           </Text>
-          <Title>Content and postings</Title>
+          <Title>CONTENT AND POSTINGS</Title>
           <Text>
             You may not modify, print or copy any part of the Mobile Application
             and Services. Inclusion of any part of the Mobile Application and
@@ -84,7 +87,7 @@ const AboutUs = ({ navigation }) => {
             malign any religion, ethnic group, club, organization, company, or
             individual.
           </Text>
-          <Title>No Responsibility Disclaimer</Title>
+          <Title>NO RESPONSIBILITY DISCLAIMER</Title>
           <Text>
             The information on the Service is provided with the understanding
             that the Company is not herein engaged in rendering legal,
@@ -104,9 +107,13 @@ const AboutUs = ({ navigation }) => {
 
 export default AboutUs;
 
-const styles = StyleSheet.create({
+const getStyles = theme => StyleSheet.create({
   container: {
     margin: 5,
     marginBottom: 30,
+  },
+  mainView: {
+    display: "flex",
+    backgroundColor: theme.colors.background,
   },
 });

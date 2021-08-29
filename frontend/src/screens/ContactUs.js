@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, View, Text } from "react-native";
-import { TextInput, Button, useTheme } from "react-native-paper";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { TextInput, Button, Text, useTheme } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
 import { submitReport } from "../store/actions/reportActions";
 import AwesomeAlert from "react-native-awesome-alerts";
@@ -40,6 +40,7 @@ const ContactUs = ({ navigation }) => {
             if you have any suggestions, please feel free to share with us.
           </Text>
           <TextInput
+            // placeholderTextColor={theme.colors.placeholderTextColor}
             mode="outlined"
             label="Name"
             placeholder="Enter your name"
@@ -49,6 +50,8 @@ const ContactUs = ({ navigation }) => {
             right={<TextInput.Affix text={`${name.length}/100`} />}
           />
           <TextInput
+            placeholderTextColor={theme.colors.placeholderTextColor}
+            outlineColor={theme.colors.placeholderTextColor}
             mode="outlined"
             placeholder="Enter your email"
             label="Email"
@@ -58,6 +61,8 @@ const ContactUs = ({ navigation }) => {
             right={<TextInput.Affix text={`${email.length}/100`} />}
           />
           <TextInput
+            placeholderTextColor={theme.colors.placeholderTextColor}
+            outlineColor={theme.colors.placeholderTextColor}
             mode="outlined"
             numberOfLines={15}
             label="Description"

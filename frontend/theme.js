@@ -10,7 +10,8 @@ export const defaultTheme = {
     background: "rgb(241, 241, 241)",
     icon: "green",
     loadingIndicator: "green",
-    button: "green"
+    button: "green",
+    placeholder: "rgb(120, 120, 120)",
   },
   card: {
     colors: {
@@ -31,6 +32,7 @@ export const darkTheme = {
     icon: "green",
     loadingIndicator: "green",
     button: "green",
+    placeholder: 'rgb(120, 120, 120)'
   },
   card: {
     colors: {

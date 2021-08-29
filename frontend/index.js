@@ -16,7 +16,7 @@ export default function Main() {
 
   return (
     <StoreProvider store={store}>
-      <PaperProvider theme={defaultTheme}>
+      <PaperProvider theme={darkTheme}>
         <App />
       </PaperProvider>
     </StoreProvider>

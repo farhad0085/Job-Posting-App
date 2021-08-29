@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, View, Text } from "react-native";
-import { Button, useTheme } from "react-native-paper";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { Button, Text, useTheme } from "react-native-paper";
 import DatePicker from "react-native-datepicker";
 import moment from "moment";
 import { calculateDuration } from "../utils/ageCalculator";
@@ -40,6 +40,9 @@ const AgeCalculator = ({ navigation }) => {
                   top: 4,
                   marginLeft: 0,
                 },
+                dateText: {
+                  color: theme.colors.placeholder
+                }
               }}
               onDateChange={(date) => setDateOfBirth(date)}
             />
@@ -58,6 +61,9 @@ const AgeCalculator = ({ navigation }) => {
                   top: 4,
                   marginLeft: 0,
                 },
+                dateText: {
+                  color: theme.colors.placeholder
+                }
               }}
               onDateChange={(date) => setSecondDate(date)}
             />
