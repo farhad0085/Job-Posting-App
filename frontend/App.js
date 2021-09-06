@@ -6,10 +6,11 @@ import AwesomeAlert from "react-native-awesome-alerts";
 import RootNavigator from "./src/navigators/RootNavigator";
 import { useTheme } from "react-native-paper";
 
+
 const App = () => {
   const netInfo = useNetInfo();
-  const theme = useTheme()
-  
+  const theme = useTheme();
+
   const [isNetConnected, setIsNetConnected] = useState(true);
 
   useEffect(() => {
@@ -18,7 +19,10 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor={theme.colors.primary}
+      />
 
       {netInfo.isConnected === false && (
         <AwesomeAlert

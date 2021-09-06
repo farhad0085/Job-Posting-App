@@ -1,12 +1,16 @@
-import React from 'react'
+import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useDispatch, useSelector } from "react-redux";
+import { TOGGLE_THEME } from "../store/actions/actionTypes";
 
 const HeaderRight = ({ onRefresh }) => {
+  const dispatch = useDispatch();
+  const themeStore = useSelector(state => state.theme);
 
   const onThemeChange = () => {
-    console.log("Clicked on theme change")
-  }
+    dispatch({ type: TOGGLE_THEME });
+  };
 
   return (
     <View style={{ display: "flex", flexDirection: "row" }}>
@@ -21,15 +25,13 @@ const HeaderRight = ({ onRefresh }) => {
       <TouchableOpacity onPress={() => onThemeChange()}>
         <Ionicons
           style={{ marginRight: 10 }}
-          name="md-sunny-sharp"
+          name={themeStore.isDarkTheme ? "md-sunny-sharp" : "moon"}
           size={30}
           color="#fff"
         />
       </TouchableOpacity>
     </View>
-  )
+  );
+};
 
-}
-
-
-export default HeaderRight
+export default HeaderRight;

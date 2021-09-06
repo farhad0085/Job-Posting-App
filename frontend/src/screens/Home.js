@@ -35,9 +35,9 @@ const Home = ({ navigation }) => {
     dispatch(loadPosts());
   };
 
-  // navigation.setOptions({
-  //   headerRight: () => <HeaderRight onRefresh={_refresh} />
-  // });
+  navigation.setOptions({
+    headerRight: () => <HeaderRight onRefresh={_refresh} />
+  });
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
