@@ -1,3 +1,4 @@
+import { storeData } from "../../utils/storage";
 import * as Types from "../actions/actionTypes";
 
 const initialState = {
@@ -7,8 +8,9 @@ const initialState = {
 function themeReducer(state = initialState, action) {
   switch (action.type) {
     case Types.TOGGLE_THEME: {
+      storeData("@theme", action.payload)
       return {
-        isDarkTheme: !state.isDarkTheme,
+        isDarkTheme: action.payload === "dark" ? true : false,
       };
     }
     default:

@@ -6,10 +6,10 @@ import { TOGGLE_THEME } from "../store/actions/actionTypes";
 
 const HeaderRight = ({ onRefresh }) => {
   const dispatch = useDispatch();
-  const themeStore = useSelector(state => state.theme);
+  const themeStore = useSelector((state) => state.theme);
 
   const onThemeChange = () => {
-    dispatch({ type: TOGGLE_THEME });
+    dispatch({ type: TOGGLE_THEME, payload: themeStore.isDarkTheme ? "default" : "dark" });
   };
 
   return (

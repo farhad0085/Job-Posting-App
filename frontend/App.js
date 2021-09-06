@@ -17,6 +17,7 @@ const App = () => {
     setIsNetConnected(netInfo.isConnected);
   }, [netInfo.isConnected]);
 
+
   return (
     <NavigationContainer>
       <StatusBar
