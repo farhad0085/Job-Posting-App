@@ -3,17 +3,15 @@ import {
   SafeAreaView,
   ScrollView,
   View,
-  Text,
   StyleSheet,
   useWindowDimensions,
 } from "react-native";
-import { Title, useTheme, ActivityIndicator } from "react-native-paper";
+import { Title, Text, useTheme, ActivityIndicator } from "react-native-paper";
 import RenderHtml from "react-native-render-html";
 import Posts from "../components/Posts/Posts";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPost } from "../store/actions/postActions";
 import PostMeta from "../components/Posts/PostMeta";
-
 
 const SinglePost = ({ route }) => {
   const postObj = route.params.post;
@@ -29,7 +27,7 @@ const SinglePost = ({ route }) => {
   }, [postObj.id]);
 
   return (
-    <SafeAreaView style={{ flex: 1, padding: 10 }}>
+    <SafeAreaView style={styles.mainView}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {post.singlePost.loading ? (
           <ActivityIndicator style={{ marginTop: 10 }} size="small" />
@@ -55,11 +53,14 @@ const SinglePost = ({ route }) => {
                       <PostMeta post={postData} />
                     </View>
                     <View>
-                        <RenderHtml
-                          defaultTextProps={{ selectable: true }}
-                          contentWidth={screenDimension.width - 20} // padding left + right
-                          source={{ html: postData?.body }}
-                        />
+                      <RenderHtml
+                        defaultTextProps={{ selectable: true }}
+                        contentWidth={screenDimension.width - 20} // padding left + right
+                        source={{ html: postData?.body }}
+                        defaultTextProps={{
+                          style: { color: theme.colors.text },
+                        }}
+                      />
                     </View>
                     <View style={{ marginBottom: 10 }}>
                       <Title style={styles.relatedPostTitle}>
@@ -85,6 +86,12 @@ export default SinglePost;
 
 const getStyles = (theme) =>
   StyleSheet.create({
+    mainView: {
+      display: "flex",
+      backgroundColor: theme.colors.background,
+      flex: 1,
+      padding: 10,
+    },
     cardsContainer: {
       display: "flex",
     },
@@ -94,6 +101,7 @@ const getStyles = (theme) =>
     postMeta: {
       borderBottomWidth: 0.5,
       marginBottom: 10,
+      borderBottomColor: theme.colors.text,
     },
     relatedPostTitle: {
       borderBottomWidth: 0.5,

@@ -4,20 +4,19 @@ import {
   ScrollView,
   View,
   StyleSheet,
-  TouchableOpacity,
 } from "react-native";
 import { Grid } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../store/actions/postActions";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import { useTheme } from "react-native-paper";
+import HeaderRight from "../components/HeaderRight";
 
 const TipsAndTricks = ({ navigation }) => {
   const dispatch = useDispatch();
-  const theme = useTheme()
+  const theme = useTheme();
   const post = useSelector((state) => state.post);
-  const styles = getStyles(theme)
+  const styles = getStyles(theme);
 
   useEffect(() => {
     dispatch(loadPosts({ category: 4 }));
@@ -28,16 +27,7 @@ const TipsAndTricks = ({ navigation }) => {
   };
 
   navigation.setOptions({
-    headerRight: () => (
-      <TouchableOpacity onPress={() => _refresh()}>
-        <Ionicons
-          style={{ marginRight: 10 }}
-          name="reload-circle-sharp"
-          size={32}
-          color="#fff"
-        />
-      </TouchableOpacity>
-    ),
+    headerRight: () => <HeaderRight onRefresh={_refresh} />
   });
 
   return (
@@ -55,12 +45,13 @@ const TipsAndTricks = ({ navigation }) => {
 
 export default TipsAndTricks;
 
-const getStyles = theme => StyleSheet.create({
-  cardsContainer: {
-    display: "flex",
-  },
-  mainView: {
-    display: "flex",
-    backgroundColor: theme.colors.background,
-  },
-});
+const getStyles = (theme) =>
+  StyleSheet.create({
+    cardsContainer: {
+      display: "flex",
+    },
+    mainView: {
+      display: "flex",
+      backgroundColor: theme.colors.background,
+    },
+  });

@@ -17,6 +17,7 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import HeaderRight from "../components/HeaderRight";
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -34,18 +35,9 @@ const Home = ({ navigation }) => {
     dispatch(loadPosts());
   };
 
-  navigation.setOptions({
-    headerRight: () => (
-      <TouchableOpacity onPress={() => _refresh()}>
-        <Ionicons
-          style={{ marginRight: 10 }}
-          name="reload-circle-sharp"
-          size={32}
-          color="#fff"
-        />
-      </TouchableOpacity>
-    ),
-  });
+  // navigation.setOptions({
+  //   headerRight: () => <HeaderRight onRefresh={_refresh} />
+  // });
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

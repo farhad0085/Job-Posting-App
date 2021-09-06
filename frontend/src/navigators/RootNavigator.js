@@ -62,7 +62,7 @@ const HomeScreenStack = ({ navigation }) => {
       <Stack.Screen
         name="MedicalJobs"
         component={MedicalJobs}
-        options={{ title: "Medical Jobs" }}
+        options={{ title: "BD Medical Jobs" }}
       />
       <Stack.Screen
         name="OtherJobs"

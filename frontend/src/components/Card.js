@@ -9,7 +9,7 @@ const MyCard = ({ title, icon, onPress }) => {
   return (
     <Card style={styles.cardContainer}>
       <TouchableHighlight
-        underlayColor={"#ddd"}
+        underlayColor={theme.card.colors.touchHover}
         onPress={onPress}
         style={{ height: "100%", borderRadius: 5 }}
       >

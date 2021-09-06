@@ -16,7 +16,8 @@ export const defaultTheme = {
   card: {
     colors: {
       background: "white",
-      text: "black"
+      text: "black",
+      touchHover: "#ddd"
     }
   }
 };
@@ -37,7 +38,8 @@ export const darkTheme = {
   card: {
     colors: {
       background: "black",
-      text: "white"
+      text: "white",
+      touchHover: "rgb(78, 78, 78)"
     }
   }
 }
