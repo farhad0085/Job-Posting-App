@@ -54,11 +54,11 @@ const SinglePost = ({ route }) => {
                     </View>
                     <View>
                       <RenderHtml
-                        defaultTextProps={{ selectable: true }}
                         contentWidth={screenDimension.width - 20} // padding left + right
                         source={{ html: postData?.body }}
                         defaultTextProps={{
                           style: { color: theme.colors.text },
+                          selectable: true
                         }}
                       />
                     </View>

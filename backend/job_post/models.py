@@ -21,6 +21,8 @@ class Post(TrackingModel):
 
 
 class Report(TrackingModel):
+    """Reports from the user will store in this table."""
+
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     description = models.TextField()

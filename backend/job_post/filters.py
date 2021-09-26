@@ -5,4 +5,10 @@ from .models import Post
 class PostFilter(filters.FilterSet):
     class Meta:
         model = Post
-        fields = ['category', 'id', 'title', 'body']
+        fields = {
+            'category': ['exact'],
+            'id': ['exact'],
+            'title': ['exact'],
+            'body': ['exact'],
+            'deadline': ['exact', 'lt', 'gt', 'lte', 'gte'],
+        }
