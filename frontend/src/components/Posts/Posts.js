@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row } from "react-native-paper-grid";
 import Post from "./Post";
 import { View, StyleSheet } from "react-native";
-import { ActivityIndicator, Button, useTheme } from "react-native-paper";
+import { ActivityIndicator, Button, useTheme, Text } from "react-native-paper";
 
 import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../../store/actions/postActions";
@@ -10,7 +10,7 @@ import { loadPosts } from "../../store/actions/postActions";
 const Posts = ({ loading, posts, hidePagination }) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post);
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <View>
@@ -22,11 +22,19 @@ const Posts = ({ loading, posts, hidePagination }) => {
         />
       ) : (
         <>
-          {posts.map((post) => (
-            <Row key={post.id}>
-              <Post post={post} />
-            </Row>
-          ))}
+          {!posts.length ? (
+            <Text style={styles.noPostText}>
+              Nothing found here, please check back again later.
+            </Text>
+          ) : (
+            <>
+              {posts.map((post) => (
+                <Row key={post.id}>
+                  <Post post={post} />
+                </Row>
+              ))}
+            </>
+          )}
 
           {!hidePagination && (
             <Row>
@@ -64,5 +72,12 @@ export default Posts;
 const styles = StyleSheet.create({
   postView: {
     backgroundColor: "red",
+  },
+  noPostText: {
+    color: "red",
+    textAlign: "center",
+    fontWeight: "bold",
+    paddingTop: 5,
+    paddingBottom: 10,
   },
 });

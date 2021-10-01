@@ -16,6 +16,7 @@ import { displayName as appName } from "../../app.json";
 import ContactUs from "../screens/ContactUs";
 import AboutUs from "../screens/AboutUs";
 import { useTheme } from "react-native-paper";
+import DeadlineSoon from "../screens/DeadlineSoon";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -73,6 +74,11 @@ const HomeScreenStack = ({ navigation }) => {
         name="GeneralPost"
         component={GeneralPost}
         options={{ title: "General" }}
+      />
+      <Stack.Screen
+        name="DeadlineSoon"
+        component={DeadlineSoon}
+        options={{ title: "Deadline Soon..." }}
       />
       <Stack.Screen
         name="TipsAndTricks"

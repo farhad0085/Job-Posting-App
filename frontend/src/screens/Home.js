@@ -4,12 +4,11 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  TouchableOpacity,
 } from "react-native";
 import Card from "../components/Card";
 import { Grid, Col, Row } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
-import { Title, useTheme } from "react-native-paper";
+import { Title, Text, useTheme } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../store/actions/postActions";
 import { useFocusEffect } from "@react-navigation/native";
@@ -18,6 +17,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import HeaderRight from "../components/HeaderRight";
+import DeadlineSoonCard from "../components/DeadlineSoonCard";
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const Home = ({ navigation }) => {
   };
 
   navigation.setOptions({
-    headerRight: () => <HeaderRight onRefresh={_refresh} />
+    headerRight: () => <HeaderRight onRefresh={_refresh} />,
   });
 
   return (
@@ -130,6 +130,7 @@ const Home = ({ navigation }) => {
             <Row>
               <Title>Latest updates</Title>
             </Row>
+            <DeadlineSoonCard filterObj={{}} />
             <Posts
               loading={post.loading}
               title="Latest updates"
