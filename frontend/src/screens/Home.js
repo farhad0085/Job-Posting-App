@@ -8,7 +8,7 @@ import {
 import Card from "../components/Card";
 import { Grid, Col, Row } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
-import { Title, Text, useTheme } from "react-native-paper";
+import { Title, useTheme } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../store/actions/postActions";
 import { useFocusEffect } from "@react-navigation/native";
@@ -18,6 +18,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import HeaderRight from "../components/HeaderRight";
 import DeadlineSoonCard from "../components/DeadlineSoonCard";
+import SearchBar from "../components/SearchBar";
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={styles.mainView} showsVerticalScrollIndicator={false}>
+        <SearchBar />
         <View style={styles.cardsContainer}>
           <Grid>
             <Row>

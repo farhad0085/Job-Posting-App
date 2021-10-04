@@ -40,7 +40,6 @@ const ContactUs = ({ navigation }) => {
             if you have any suggestions, please feel free to share with us.
           </Text>
           <TextInput
-            // placeholderTextColor={theme.colors.placeholderTextColor}
             mode="outlined"
             label="Name"
             placeholder="Enter your name"

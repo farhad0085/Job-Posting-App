@@ -17,6 +17,7 @@ import ContactUs from "../screens/ContactUs";
 import AboutUs from "../screens/AboutUs";
 import { useTheme } from "react-native-paper";
 import DeadlineSoon from "../screens/DeadlineSoon";
+import SearchResult from "../screens/SearchResult";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -94,6 +95,11 @@ const HomeScreenStack = ({ navigation }) => {
         name="SinglePost"
         component={SinglePost}
         options={({ route }) => ({ title: route.params.title })}
+      />
+      <Stack.Screen
+        name="SearchResult"
+        component={SearchResult}
+        options={{ title: "Search Result"}}
       />
       <Stack.Screen
         name="AgeCalculator"
