@@ -14,7 +14,6 @@ import {
   View,
   StyleSheet,
   Text,
-  ToastAndroid,
   TouchableOpacity,
 } from "react-native";
 import { Grid, Row, Col } from "react-native-paper-grid";
@@ -25,6 +24,7 @@ import {
   FACEBOOK_PAGE_LINK_APP,
   WEBSITE_LINK,
   YOUTUBE_LINK_APP,
+  PLAY_STORE_LINK
 } from "../utils/config";
 
 const backPressed = () => {
@@ -68,6 +68,10 @@ const openWebsiteLink = () => {
   Linking.openURL(WEBSITE_LINK);
 };
 
+const openPlayStore = () => {
+  Linking.openURL(PLAY_STORE_LINK);
+};
+
 const DrawerItems = (props) => {
   return (
     <DrawerContentScrollView {...props}>
@@ -84,7 +88,7 @@ const DrawerItems = (props) => {
       />
       <DrawerItem
         label="Rate us on Play Store"
-        onPress={() => ToastAndroid.show("Coming soon...", ToastAndroid.SHORT)}
+        onPress={openPlayStore}
         icon={({ focused, color, size }) => (
           <Ionicons color={color} size={size} name="logo-google-playstore" />
         )}
