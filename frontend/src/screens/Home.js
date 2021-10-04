@@ -1,10 +1,5 @@
-import React from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  ScrollView,
-} from "react-native";
+import React, { useEffect } from "react";
+import { SafeAreaView, StyleSheet, View, ScrollView } from "react-native";
 import Card from "../components/Card";
 import { Grid, Col, Row } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
@@ -26,11 +21,9 @@ const Home = ({ navigation }) => {
   const post = useSelector((state) => state.post);
   const styles = getStyles(theme);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      dispatch(loadPosts());
-    }, [])
-  );
+  useEffect(() => {
+    _refresh();
+  }, []);
 
   const _refresh = () => {
     dispatch(loadPosts());
@@ -134,9 +127,12 @@ const Home = ({ navigation }) => {
             </Row>
             <DeadlineSoonCard filterObj={{}} />
             <Posts
+              hidePagination
+              next={post.posts?.next}
+              previous={post.posts?.previous}
               loading={post.loading}
               title="Latest updates"
-              posts={post.posts.results}
+              posts={post.posts?.results || []}
             />
           </Grid>
         </View>

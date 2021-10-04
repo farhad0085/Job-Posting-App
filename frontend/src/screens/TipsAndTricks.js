@@ -1,10 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  StyleSheet,
-} from "react-native";
+import { SafeAreaView, ScrollView, View, StyleSheet } from "react-native";
 import { Grid } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,15 +14,15 @@ const TipsAndTricks = ({ navigation }) => {
   const styles = getStyles(theme);
 
   useEffect(() => {
-    dispatch(loadPosts({ category: 4 }));
+    _refresh();
   }, []);
 
   const _refresh = () => {
-    dispatch(loadPosts({ category: 4 }));
+    dispatch(loadPosts({ category: 4 }, null, "tipsAndTricks"));
   };
 
   navigation.setOptions({
-    headerRight: () => <HeaderRight onRefresh={_refresh} />
+    headerRight: () => <HeaderRight onRefresh={_refresh} />,
   });
 
   return (
@@ -35,7 +30,12 @@ const TipsAndTricks = ({ navigation }) => {
       <ScrollView style={styles.mainView} showsVerticalScrollIndicator={false}>
         <View style={styles.cardsContainer}>
           <Grid>
-            <Posts loading={post.loading} posts={post.posts.results} />
+            <Posts
+              next={post.tipsAndTricks?.next}
+              previous={post.tipsAndTricks?.previous}
+              loading={post.loading}
+              posts={post.tipsAndTricks?.results || []}
+            />
           </Grid>
         </View>
       </ScrollView>

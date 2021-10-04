@@ -7,9 +7,8 @@ import { ActivityIndicator, Button, useTheme, Text } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../../store/actions/postActions";
 
-const Posts = ({ loading, posts, hidePagination }) => {
+const Posts = ({ loading, posts, hidePagination, next, previous }) => {
   const dispatch = useDispatch();
-  const post = useSelector((state) => state.post);
   const theme = useTheme();
 
   return (
@@ -42,8 +41,8 @@ const Posts = ({ loading, posts, hidePagination }) => {
                 <Button
                   color={theme.colors.button}
                   mode="contained"
-                  onPress={() => dispatch(loadPosts({}, post.posts.previous))}
-                  disabled={!post.posts.previous}
+                  onPress={() => dispatch(loadPosts({}, previous))}
+                  disabled={!previous}
                 >
                   Prev
                 </Button>
@@ -53,8 +52,8 @@ const Posts = ({ loading, posts, hidePagination }) => {
                 <Button
                   color={theme.colors.button}
                   mode="contained"
-                  onPress={() => dispatch(loadPosts({}, post.posts.next))}
-                  disabled={!post.posts.next}
+                  onPress={() => dispatch(loadPosts({}, next))}
+                  disabled={!next}
                 >
                   Next
                 </Button>

@@ -30,11 +30,11 @@ function postReducer(state = initialState, action) {
       };
     }
     case Types.POST_LOADED: {
+      state[action.whereTo || "posts"] = action.payload
       return {
         ...state,
         loading: false,
         error: "",
-        posts: action.payload
       };
     }
     case Types.POST_DETAIL_LOADING: {

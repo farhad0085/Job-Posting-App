@@ -14,11 +14,11 @@ const SearchResult = ({ navigation, route }) => {
   const styles = getStyles(theme);
 
   useEffect(() => {
-    dispatch(loadPosts({ id: route.params?.postId }));
+    dispatch(loadPosts({ id: route.params?.postId }, null, "searchResult"));
   }, []);
 
   navigation.setOptions({
-    headerRight: () => <HeaderRight hideReload />
+    headerRight: () => <HeaderRight hideReload />,
   });
 
   return (
@@ -26,7 +26,12 @@ const SearchResult = ({ navigation, route }) => {
       <ScrollView style={styles.mainView} showsVerticalScrollIndicator={false}>
         <View style={styles.cardsContainer}>
           <Grid>
-            <Posts loading={post.loading} posts={post.posts.results} />
+            <Posts
+              next={post.searchResult?.next}
+              previous={post.searchResult?.previous}
+              loading={post.loading}
+              posts={post.searchResult?.results || []}
+            />
           </Grid>
         </View>
       </ScrollView>

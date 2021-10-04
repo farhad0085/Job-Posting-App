@@ -15,14 +15,12 @@ const OtherJobs = ({ navigation }) => {
   const post = useSelector((state) => state.post);
   const styles = getStyles(theme);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      _refresh();
-    }, [])
-  );
+  useEffect(() => {
+    _refresh();
+  }, []);
 
   const _refresh = () => {
-    dispatch(loadPosts({ category: 2 }));
+    dispatch(loadPosts({ category: 2 }, null, "otherJobs"));
   };
 
   navigation.setOptions({
@@ -38,7 +36,12 @@ const OtherJobs = ({ navigation }) => {
               filterObj={{ category: 2 }}
               subtitle="Other jobs which deadlines are in next 10 days"
             />
-            <Posts loading={post.loading} posts={post.posts.results} />
+            <Posts
+              next={post.otherJobs?.next}
+              previous={post.otherJobs?.previous}
+              loading={post.loading}
+              posts={post.otherJobs?.results || []}
+            />
           </Grid>
         </View>
       </ScrollView>

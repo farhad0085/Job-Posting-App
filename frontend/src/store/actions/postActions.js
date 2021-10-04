@@ -2,7 +2,7 @@ import axios from "../../utils/axios";
 import * as Types from "./actionTypes";
 
 
-export const loadPosts = (filters, url) => (dispatch) => {
+export const loadPosts = (filters, url, whereTo) => (dispatch) => {
   dispatch({ type: Types.POST_LOADING, payload: true });
 
   let postUrl = url || "/posts/";
@@ -11,7 +11,7 @@ export const loadPosts = (filters, url) => (dispatch) => {
     .get(postUrl, { params: filters })
     .then((res) => {
       console.log("Posts loaded");
-      dispatch({ type: Types.POST_LOADED, payload: res.data });
+      dispatch({ type: Types.POST_LOADED, payload: res.data, whereTo: whereTo });
     })
     .catch((error) => {
       console.log("Error occured", error);

@@ -41,7 +41,7 @@ const DeadlineSoon = ({ navigation, route }) => {
       deadline__gte: moment().format("YYYY-MM-DD"),
       ...route.params.filterObj
     }
-    dispatch(loadPosts(obj));
+    dispatch(loadPosts(obj, null, "deadlineSoon"));
   };
 
   navigation.setOptions({
@@ -53,7 +53,12 @@ const DeadlineSoon = ({ navigation, route }) => {
       <ScrollView style={styles.mainView} showsVerticalScrollIndicator={false}>
         <View style={styles.cardsContainer}>
           <Grid>
-            <Posts loading={post.loading} posts={post.posts.results} />
+            <Posts
+              next={post.deadlineSoon?.next}
+              previous={post.deadlineSoon?.previous}
+              loading={post.loading}
+              posts={post.deadlineSoon?.results || []}
+            />
           </Grid>
         </View>
       </ScrollView>

@@ -18,11 +18,11 @@ const GeneralPost = ({ navigation }) => {
   }, []);
 
   const _refresh = () => {
-    dispatch(loadPosts({ category: 3 }));
+    dispatch(loadPosts({ category: 3 }, null, "generalPost"));
   };
 
   navigation.setOptions({
-    headerRight: () => <HeaderRight onRefresh={_refresh} />,
+    headerRight: () => <HeaderRight onRefresh={_refresh} />
   });
 
   return (
@@ -30,7 +30,12 @@ const GeneralPost = ({ navigation }) => {
       <ScrollView style={styles.mainView} showsVerticalScrollIndicator={false}>
         <View style={styles.cardsContainer}>
           <Grid>
-            <Posts loading={post.loading} posts={post.posts.results} />
+            <Posts
+              next={post.generalPost?.next}
+              previous={post.generalPost?.previous}
+              loading={post.loading}
+              posts={post.generalPost?.results || []}
+            />
           </Grid>
         </View>
       </ScrollView>

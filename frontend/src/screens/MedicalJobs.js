@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView, View, StyleSheet, ScrollView } from "react-native";
 import { Grid } from "react-native-paper-grid";
 import Posts from "../components/Posts/Posts";
@@ -15,14 +15,12 @@ const MedicalJobs = ({ navigation }) => {
   const post = useSelector((state) => state.post);
   const styles = getStyles(theme);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      _refresh();
-    }, [])
-  );
+  useEffect(() => {
+    _refresh();
+  }, []);
 
   const _refresh = () => {
-    dispatch(loadPosts({ category: 1 }));
+    dispatch(loadPosts({ category: 1 }, null, "medicalJobs"));
   };
 
   navigation.setOptions({
@@ -38,7 +36,12 @@ const MedicalJobs = ({ navigation }) => {
               filterObj={{ category: 1 }}
               subtitle="Medical jobs which deadlines are in next 10 days"
             />
-            <Posts loading={post.loading} posts={post.posts.results} />
+            <Posts
+              next={post.medicalJobs?.next}
+              previous={post.medicalJobs?.previous}
+              loading={post.loading}
+              posts={post.medicalJobs?.results || []}
+            />
           </Grid>
         </View>
       </ScrollView>
