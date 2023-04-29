@@ -6,7 +6,6 @@ import Posts from "../components/Posts/Posts";
 import { Title, useTheme } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPosts } from "../store/actions/postActions";
-import { useFocusEffect } from "@react-navigation/native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -14,6 +13,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import HeaderRight from "../components/HeaderRight";
 import DeadlineSoonCard from "../components/DeadlineSoonCard";
 import SearchBar from "../components/SearchBar";
+import { GAMBannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -126,6 +127,15 @@ const Home = ({ navigation }) => {
               <Title>Latest updates</Title>
             </Row>
             <DeadlineSoonCard filterObj={{}} />
+            
+            <GAMBannerAd
+              unitId={TestIds.BANNER}
+              sizes={[BannerAdSize.FULL_BANNER]}
+              requestOptions={{
+                requestNonPersonalizedAdsOnly: true,
+              }}
+            />
+
             <Posts
               hidePagination
               next={post.posts?.next}

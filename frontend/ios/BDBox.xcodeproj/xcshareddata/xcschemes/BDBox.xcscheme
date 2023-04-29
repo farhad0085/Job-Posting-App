@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "BDBox.app"
-               BlueprintName = "BDBox"
-               ReferencedContainer = "container:BDBox.xcodeproj">
+               BuildableName = "bdbox.app"
+               BlueprintName = "bdbox"
+               ReferencedContainer = "container:bdbox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "BDBoxTests.xctest"
-               BlueprintName = "BDBoxTests"
-               ReferencedContainer = "container:BDBox.xcodeproj">
+               BuildableName = "bdboxTests.xctest"
+               BlueprintName = "bdboxTests"
+               ReferencedContainer = "container:bdbox.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "BDBox.app"
-            BlueprintName = "BDBox"
-            ReferencedContainer = "container:BDBox.xcodeproj">
+            BuildableName = "bdbox.app"
+            BlueprintName = "bdbox"
+            ReferencedContainer = "container:bdbox.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "BDBox.app"
-            BlueprintName = "BDBox"
-            ReferencedContainer = "container:BDBox.xcodeproj">
+            BuildableName = "bdbox.app"
+            BlueprintName = "bdbox"
+            ReferencedContainer = "container:bdbox.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

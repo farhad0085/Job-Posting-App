@@ -1,4 +1,8 @@
 {
-  "name": "BDBox",
-  "displayName": "BD Box"
+  "name": "bdbox",
+  "displayName": "BD Box",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-7532605118076374~9998568859",
+    "ios_app_id": "ca-app-pub-7532605118076374~9998568859"
+  }
 }
