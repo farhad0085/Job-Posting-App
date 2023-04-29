@@ -1,6 +1,5 @@
 from django.http.response import HttpResponse
-
-
+from django.shortcuts import render
 
 
 def index(request):
@@ -12,3 +11,6 @@ def index(request):
     </html>
     """
     return HttpResponse(html)
+
+def privacy_policy(request):
+    return render(request, "others/privacy-policy.html")

@@ -9,7 +9,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('api/', include('job_post.urls')),
-    path('', views.index)
+    path('', views.index),
+    path('privacy-policy/', views.privacy_policy)
 ]
 
 if settings.DEBUG:
