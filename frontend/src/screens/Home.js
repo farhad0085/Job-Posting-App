@@ -13,7 +13,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import HeaderRight from "../components/HeaderRight";
 import DeadlineSoonCard from "../components/DeadlineSoonCard";
 import SearchBar from "../components/SearchBar";
-import { GAMBannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+import { BANNER_AD_UNIT_ID_BELLOW_POST } from "../utils/ads";
 
 
 const Home = ({ navigation }) => {
@@ -38,6 +39,10 @@ const Home = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={styles.mainView} showsVerticalScrollIndicator={false}>
         <SearchBar />
+        <BannerAd
+          unitId={BANNER_AD_UNIT_ID_BELLOW_POST}
+          sizes={[BannerAdSize.LEADERBOARD]}
+        />
         <View style={styles.cardsContainer}>
           <Grid>
             <Row>
@@ -127,14 +132,6 @@ const Home = ({ navigation }) => {
               <Title>Latest updates</Title>
             </Row>
             <DeadlineSoonCard filterObj={{}} />
-            
-            <GAMBannerAd
-              unitId={TestIds.BANNER}
-              sizes={[BannerAdSize.FULL_BANNER]}
-              requestOptions={{
-                requestNonPersonalizedAdsOnly: true,
-              }}
-            />
 
             <Posts
               hidePagination

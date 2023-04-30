@@ -3,9 +3,10 @@ import { Col, Row } from "react-native-paper-grid";
 import Post from "./Post";
 import { View, StyleSheet } from "react-native";
 import { ActivityIndicator, Button, useTheme, Text } from "react-native-paper";
-
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loadPosts } from "../../store/actions/postActions";
+import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
+import { BANNER_AD_UNIT_ID_BETWEEN_POST } from "../../utils/ads";
 
 const Posts = ({ loading, posts, hidePagination, next, previous }) => {
   const dispatch = useDispatch();
@@ -27,10 +28,24 @@ const Posts = ({ loading, posts, hidePagination, next, previous }) => {
             </Text>
           ) : (
             <>
-              {posts.map((post) => (
-                <Row key={post.id}>
-                  <Post post={post} />
-                </Row>
+              {posts.map((post, index) => (
+                <>
+                  {(index % 5) === 0 ? (
+                    <>
+                      <BannerAd
+                        unitId={BANNER_AD_UNIT_ID_BETWEEN_POST}
+                        sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
+                      />
+                      <Row key={post.id}>
+                        <Post post={post} />
+                      </Row>
+                    </>
+                  ) : (
+                    <Row key={post.id}>
+                      <Post post={post} />
+                    </Row>
+                  )}
+                </>
               ))}
             </>
           )}

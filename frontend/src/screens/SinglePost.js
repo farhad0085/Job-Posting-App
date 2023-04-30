@@ -12,6 +12,9 @@ import Posts from "../components/Posts/Posts";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPost } from "../store/actions/postActions";
 import PostMeta from "../components/Posts/PostMeta";
+import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
+import { BANNER_AD_UNIT_ID_BELLOW_POST } from "../utils/ads";
+
 
 const SinglePost = ({ route }) => {
   const postObj = route.params.post;
@@ -53,6 +56,10 @@ const SinglePost = ({ route }) => {
                       <PostMeta post={postData} />
                     </View>
                     <View>
+                      <BannerAd
+                        unitId={BANNER_AD_UNIT_ID_BELLOW_POST}
+                        sizes={[BannerAdSize.LEADERBOARD]}
+                      />
                       <RenderHtml
                         contentWidth={screenDimension.width - 20} // padding left + right
                         source={{ html: postData?.body }}
@@ -60,6 +67,10 @@ const SinglePost = ({ route }) => {
                           style: { color: theme.colors.text },
                           selectable: true
                         }}
+                      />
+                      <BannerAd
+                        unitId={BANNER_AD_UNIT_ID_BELLOW_POST}
+                        sizes={[BannerAdSize.INLINE_ADAPTIVE_BANNER]}
                       />
                     </View>
                     <View style={{ marginBottom: 10 }}>
