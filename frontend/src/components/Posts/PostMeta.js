@@ -13,7 +13,7 @@ const PostMeta = ({ post }) => {
   return (
     <View style={styles.postMeta}>
       <View style={styles.postUpdateTime}>
-        <Text style={styles.text}>Last updated: {moment(post.updated_at).fromNow()}</Text>
+        <Text style={styles.text}>Last updated: {moment(post.updated_at).format("DD MMM, YYYY \\at hh:mm a")}</Text>
       </View>
       <View style={styles.postViewIcon}>
         <TouchableOpacity
