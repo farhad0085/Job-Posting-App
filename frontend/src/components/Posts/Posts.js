@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { Col, Row } from "react-native-paper-grid";
 import Post from "./Post";
 import { View, StyleSheet } from "react-native";
@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { loadPosts } from "../../store/actions/postActions";
 import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 import { BANNER_AD_UNIT_ID_BETWEEN_POST } from "../../utils/ads";
+import { createUUID } from "../../utils";
 
 const Posts = ({ loading, posts, hidePagination, next, previous }) => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const Posts = ({ loading, posts, hidePagination, next, previous }) => {
           ) : (
             <>
               {posts.map((post, index) => (
-                <>
+                <Fragment key={createUUID()}>
                   {(index % 5) === 0 ? (
                     <>
                       <BannerAd
@@ -45,7 +46,7 @@ const Posts = ({ loading, posts, hidePagination, next, previous }) => {
                       <Post post={post} />
                     </Row>
                   )}
-                </>
+                </Fragment>
               ))}
             </>
           )}

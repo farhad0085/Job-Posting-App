@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
-import { Button, Text, useTheme } from "react-native-paper";
-import DatePicker from "react-native-datepicker";
+import { SafeAreaView, ScrollView, StyleSheet, View, Pressable } from "react-native";
+import { Button, Text, useTheme, TextInput } from "react-native-paper";
+import DatePicker from "react-native-date-picker";
+// import DatePicker from "react-native-datepicker";
 import moment from "moment";
 import { calculateDuration } from "../utils/ageCalculator";
 
 
 const AgeCalculator = ({ navigation }) => {
-  const [dateOfBirth, setDateOfBirth] = useState("01-01-1999");
+  const [dateOfBirth, setDateOfBirth] = useState(new Date("1999-01-01"));
   const [secondDate, setSecondDate] = useState(new Date());
   const [age, setAge] = useState("");
   const theme = useTheme()
   const styles = getStyles(theme)
+  const [isFirstDateOpened, setIsFirstDateOpened] = useState(false)
+  const [isSecondDateOpened, setIsSecondDateOpened] = useState(false)
 
   const calculateAge = () => {
     const dob = moment(dateOfBirth, "DD-MM-YYYY")
@@ -23,51 +26,79 @@ const AgeCalculator = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={styles.mainView}>
+        
         <View style={styles.container}>
           <Text style={styles.titleText}>Calculate your age</Text>
 
-          <View>
-            <Text>Date of birth</Text>
-            <DatePicker
-              style={styles.picker}
+          <Text>Date of birth</Text>
+
+          <Pressable onPress={() => setIsFirstDateOpened(true)}>
+            <View pointerEvents="none">
+            <TextInput
+              mode="outlined"
               placeholder="Select a date"
-              date={dateOfBirth}
-              format="DD-MM-YYYY"
-              customStyles={{
-                dateIcon: {
-                  position: "absolute",
-                  left: 4,
-                  top: 4,
-                  marginLeft: 0,
-                },
-                dateText: {
-                  color: theme.colors.placeholder
-                }
-              }}
-              onDateChange={(date) => setDateOfBirth(date)}
+              value={moment(dateOfBirth).format("DD MMM, YYYY")}
+              style={styles.textInputStyle}
+              editable={false}
+              left={<TextInput.Icon
+                style={styles.dateIcon}
+                size={26}
+                name="calendar"
+              />}
             />
-          </View>
-          <View>
-            <Text>Today</Text>
-            <DatePicker
-              style={styles.picker}
+            </View>
+          </Pressable>
+
+          <DatePicker
+            modal
+            mode={"date"}
+            open={isFirstDateOpened}
+            style={styles.picker}
+            date={dateOfBirth}
+            confirmText={"Select"}
+            onCancel={() => setIsFirstDateOpened(false)}
+            onConfirm={(date) => {
+              setDateOfBirth(date)
+              setIsFirstDateOpened(false)
+              setAge("")
+            }}
+          />
+
+          <Text>Today</Text>
+
+          <Pressable onPress={() => setIsSecondDateOpened(true)}>
+            <View pointerEvents="none">
+            <TextInput
+              mode="outlined"
               placeholder="Select a date"
-              date={secondDate}
-              format="DD-MM-YYYY"
-              customStyles={{
-                dateIcon: {
-                  position: "absolute",
-                  left: 4,
-                  top: 4,
-                  marginLeft: 0,
-                },
-                dateText: {
-                  color: theme.colors.placeholder
-                }
-              }}
-              onDateChange={(date) => setSecondDate(date)}
+              value={moment(secondDate).format("DD MMM, YYYY")}
+              style={styles.textInputStyle}
+              editable={false}
+              left={<TextInput.Icon
+                style={styles.dateIcon}
+                size={26}
+                name="calendar"
+              />}
             />
-          </View>
+            </View>
+          </Pressable>
+
+          <DatePicker
+            modal
+            mode={"date"}
+            open={isSecondDateOpened}
+            style={styles.picker}
+            date={secondDate}
+            confirmText={"Select"}
+            onCancel={() => setIsSecondDateOpened(false)}
+            onConfirm={(date) => {
+              setSecondDate(date)
+              setIsSecondDateOpened(false)
+              setAge("")
+            }}
+          />
+
+
           <Button
             disabled={!!!dateOfBirth || !!!secondDate}
             onPress={calculateAge}
@@ -82,6 +113,7 @@ const AgeCalculator = ({ navigation }) => {
               <Text style={styles.ageText}>{age}</Text>
             </View>
           )}
+          
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -95,7 +127,6 @@ const getStyles = theme => StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
     display: "flex",
-    alignItems: "center",
     justifyContent: "center",
   },
   titleText: {
@@ -117,4 +148,10 @@ const getStyles = theme => StyleSheet.create({
     display: "flex",
     backgroundColor: theme.colors.background,
   },
+  textInputStyle: {
+    height: 45,
+  },
+  dateIcon : {
+    marginBottom: -0.1,
+  }
 });

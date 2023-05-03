@@ -11,3 +11,11 @@ keytool -genkeypair -v -storetype PKCS12 -keystore bdbox_version_2_3.keystore -a
 ```
 keytool -export -rfc -keystore bdbox_version_2_3.keystore -alias bdbox_version_2_3 -file upload_certificate.pem
 ```
+
+### Release
+
+```
+cd android/
+./gradlew clean
+./gradlew bundleRelease
+```

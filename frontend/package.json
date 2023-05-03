@@ -11,8 +11,6 @@
     "build-android": "react-native run-android --mode=release"
   },
   "dependencies": {
-    "react": "18.2.0",
-    "react-native": "0.71.7",
     "@react-native-async-storage/async-storage": "^1.15.7",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-community/netinfo": "^6.0.0",
@@ -21,8 +19,10 @@
     "@react-navigation/stack": "^5.14.5",
     "axios": "^0.21.1",
     "moment": "^2.29.1",
+    "react": "18.2.0",
+    "react-native": "0.71.7",
     "react-native-awesome-alerts": "^1.5.2",
-    "react-native-datepicker": "^1.7.2",
+    "react-native-date-picker": "^4.2.13",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-google-mobile-ads": "^10.3.1",
     "react-native-paper": "^4.9.2",
