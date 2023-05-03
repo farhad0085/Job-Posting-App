@@ -5,9 +5,9 @@ from job_post.models import Post, PostViewMeta, Report
 from job_post.serializers import PostSerializer, ReportSerializer
 from django_filters import rest_framework as filters
 from django.db.models import Q, Sum
+from job_post.utils import get_client_ip
 import re
 
-from job_post.utils import get_client_ip
 
 class PostListAPIView(ListAPIView):
     serializer_class = PostSerializer
