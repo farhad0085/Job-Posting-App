@@ -98,8 +98,8 @@ android {
         applicationId "com.bdbox"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 8000
-        versionName "2.5"
+        versionCode 8001
+        versionName "2.6"
     }
 
     splits {
