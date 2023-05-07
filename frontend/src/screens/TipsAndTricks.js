@@ -35,6 +35,7 @@ const TipsAndTricks = ({ navigation }) => {
               previous={post.tipsAndTricks?.previous}
               loading={post.loading}
               posts={post.tipsAndTricks?.results || []}
+              whereTo={"tipsAndTricks"}
             />
           </Grid>
         </View>

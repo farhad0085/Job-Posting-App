@@ -31,6 +31,7 @@ const SearchResult = ({ navigation, route }) => {
               previous={post.searchResult?.previous}
               loading={post.loading}
               posts={post.searchResult?.results || []}
+              whereTo={"searchResult"}
             />
           </Grid>
         </View>

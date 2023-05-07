@@ -58,6 +58,7 @@ const DeadlineSoon = ({ navigation, route }) => {
               previous={post.deadlineSoon?.previous}
               loading={post.loading}
               posts={post.deadlineSoon?.results || []}
+              whereTo={"deadlineSoon"}
             />
           </Grid>
         </View>

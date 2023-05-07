@@ -41,6 +41,7 @@ const OtherJobs = ({ navigation }) => {
               previous={post.otherJobs?.previous}
               loading={post.loading}
               posts={post.otherJobs?.results || []}
+              whereTo={"otherJobs"}
             />
           </Grid>
         </View>

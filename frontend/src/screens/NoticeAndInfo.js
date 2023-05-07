@@ -35,6 +35,7 @@ const NoticeAndInfo = ({ navigation }) => {
               previous={post.noticeAndInfo?.previous}
               loading={post.loading}
               posts={post.noticeAndInfo?.results || []}
+              whereTo={"noticeAndInfo"}
             />
           </Grid>
         </View>

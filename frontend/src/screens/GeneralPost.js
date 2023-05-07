@@ -35,6 +35,7 @@ const GeneralPost = ({ navigation }) => {
               previous={post.generalPost?.previous}
               loading={post.loading}
               posts={post.generalPost?.results || []}
+              whereTo={"generalPost"}
             />
           </Grid>
         </View>

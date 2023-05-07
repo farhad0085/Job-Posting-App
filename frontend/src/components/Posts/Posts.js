@@ -9,7 +9,7 @@ import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 import { BANNER_AD_UNIT_ID_BETWEEN_POST } from "../../utils/ads";
 import { createUUID } from "../../utils";
 
-const Posts = ({ loading, posts, hidePagination, next, previous }) => {
+const Posts = ({ loading, posts, hidePagination, next, previous, whereTo }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
 
@@ -57,7 +57,7 @@ const Posts = ({ loading, posts, hidePagination, next, previous }) => {
                 <Button
                   color={theme.colors.button}
                   mode="contained"
-                  onPress={() => dispatch(loadPosts({}, previous))}
+                  onPress={() => dispatch(loadPosts({}, previous, whereTo))}
                   disabled={!previous}
                 >
                   Prev
@@ -68,7 +68,7 @@ const Posts = ({ loading, posts, hidePagination, next, previous }) => {
                 <Button
                   color={theme.colors.button}
                   mode="contained"
-                  onPress={() => dispatch(loadPosts({}, next))}
+                  onPress={() => dispatch(loadPosts({}, next, whereTo))}
                   disabled={!next}
                 >
                   Next
